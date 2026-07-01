@@ -1,0 +1,18 @@
+{
+  "slug": "the-boba",
+  "title": "THE BOBA",
+  "cover": "cover.gif",
+  "category": "packaging-design",
+  "year": "2025",
+  "summary": "Bold, youthful packaging design with energetic color, form, and brand personality.",
+  "accent": "#D9A5A5",
+  "order": 6,
+  "writeup": "/projects/the-boba/writeup.pdf",
+  "sections": [
+    { "type": "artwork", "title": "Artwork", "assets": [] },
+    { "type": "mockups", "title": "Mockups", "assets": [] },
+    { "type": "moodboard", "title": "Moodboard", "assets": [] },
+    { "type": "storyboards", "title": "Storyboards", "assets": [] },
+    { "type": "video", "title": "Video", "assets": [] }
+  ]
+}

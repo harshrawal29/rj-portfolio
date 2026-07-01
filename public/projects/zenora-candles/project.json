@@ -1,0 +1,18 @@
+{
+  "slug": "zenora-candles",
+  "title": "Zenora Candles",
+  "cover": "cover.jpg",
+  "category": "packaging-design",
+  "year": "2025",
+  "summary": "A calm, sensory packaging world inspired by ritual, glow, and quiet luxury.",
+  "accent": "#A99BC9",
+  "order": 7,
+  "writeup": "/projects/zenora-candles/writeup.pdf",
+  "sections": [
+    { "type": "artwork", "title": "Artwork", "assets": [] },
+    { "type": "mockups", "title": "Mockups", "assets": [] },
+    { "type": "moodboard", "title": "Moodboard", "assets": [] },
+    { "type": "storyboards", "title": "Storyboards", "assets": [] },
+    { "type": "video", "title": "Video", "assets": [] }
+  ]
+}

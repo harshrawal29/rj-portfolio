@@ -1,0 +1,81 @@
+{
+  "categories": [
+    {
+      "slug": "album-cover-design",
+      "title": "Album Cover Design",
+      "description": "Visual identities and cover art for music releases.",
+      "order": 1
+    },
+    {
+      "slug": "packaging-design",
+      "title": "Packaging Design",
+      "description": "Product packaging and brand experience systems.",
+      "order": 2
+    }
+  ],
+  "projects": [
+    {
+      "slug": "muskarao-na-song",
+      "title": "Muskarao Na Song",
+      "category": "album-cover-design",
+      "year": "2025",
+      "summary": "A warm, expressive album cover shaped by melody, memory, and playful visual rhythm.",
+      "accent": "#A99BC9",
+      "order": 1
+    },
+    {
+      "slug": "sirhane-pe",
+      "title": "Sirhane Pe",
+      "category": "album-cover-design",
+      "year": "2025",
+      "summary": "An intimate cover direction balancing softness, atmosphere, and lyrical emotion.",
+      "accent": "#D9A5A5",
+      "order": 2
+    },
+    {
+      "slug": "thode-se-hum-tum",
+      "title": "Thode Se Hum Tum",
+      "category": "album-cover-design",
+      "year": "2025",
+      "summary": "A romantic visual narrative built through layered texture, tone, and typographic detail.",
+      "accent": "#D6B46A",
+      "order": 3
+    },
+    {
+      "slug": "halke-phulke-redesign",
+      "title": "Halke Phulke Redesign",
+      "category": "packaging-design",
+      "year": "2025",
+      "summary": "A refreshed packaging system that elevates lightness, appetite, and shelf presence.",
+      "accent": "#A8B59C",
+      "order": 4
+    },
+    {
+      "slug": "maysha",
+      "title": "Maysha",
+      "category": "packaging-design",
+      "year": "2025",
+      "summary": "Elegant product packaging guided by refined typography and tactile brand expression.",
+      "accent": "#C76D4F",
+      "order": 5
+    },
+    {
+      "slug": "the-boba",
+      "title": "THE BOBA",
+      "category": "packaging-design",
+      "year": "2025",
+      "summary": "Bold, youthful packaging design with energetic color, form, and brand personality.",
+      "accent": "#D9A5A5",
+      "order": 6
+    },
+    {
+      "slug": "zenora-candles",
+      "title": "Zenora Candles",
+      "category": "packaging-design",
+      "year": "2025",
+      "summary": "A calm, sensory packaging world inspired by ritual, glow, and quiet luxury.",
+      "accent": "#A99BC9",
+      "order": 7
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "slug": "muskarao-na-song",
+  "title": "Muskarao Na Song",
+  "cover": "muskurao-na-final.jpg",
+  "archivePreview": "muskurao-na-final.jpg",
+  "category": "album-cover-design",
+  "year": "2025",
+  "summary": "A warm, expressive album cover shaped by melody, memory, and playful visual rhythm.",
+  "accent": "#A99BC9",
+  "order": 1,
+  "writeup": "/projects/muskarao-na-song/writeup.pdf",
+  "sections": [
+    { "type": "artwork", "title": "Artwork", "assets": [
+      { "filename": "muskurao-na-final.jpg" }
+    ] },
+    { "type": "mockups", "title": "Mockups", "assets": [
+      { "filename": "mockup.png" }
+    ] },
+    { "type": "moodboard", "title": "Moodboard", "assets": [
+      { "filename": "moodboard.png" }
+    ] }
+  ]
+}

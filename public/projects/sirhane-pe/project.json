@@ -1,0 +1,49 @@
+{
+  "slug": "sirhane-pe",
+  "title": "Sirhane Pe",
+  "cover": "final.jpg",
+  "category": "album-cover-design",
+  "year": "2025",
+  "summary": "An intimate cover direction balancing softness, atmosphere, and lyrical emotion.",
+  "accent": "#D9A5A5",
+  "order": 2,
+  "writeup": "/projects/sirhane-pe/writeup.pdf",
+  "client": "Independent Artist",
+  "eyebrow": "Art Design Overview",
+  "editorialStory": "This project involved designing the official Spotify cover art for <strong>Rucha Govani</strong> in collaboration with <strong>Mystic Origins</strong>. The artwork was created to visually capture the emotional warmth, comfort, and peace expressed within the song. Created in a digital painting style, the cover was designed to feel soft, dreamy, and emotionally immersive while reflecting the calmness of being with someone who feels like home.",
+  "services": [
+    "ALBUM ARTWORK",
+    "TYPOGRAPHY",
+    "VISUAL IDENTITY"
+  ],
+  "contentBlocks": [
+    {
+      "type": "image-text",
+      "variant": "text-image",
+      "src": "final.jpg",
+      "label": "Concept & Inspiration",
+      "heading": "Rethinking the shelf presence.",
+      "body": "Sirhane Pe explores the idea that in a world full of chaos, two people can find solace and comfort in each other. With every glance and every touch, their hearts feel at home, creating a safe haven filled with love and peace.<br><br>The artwork visually translates this emotion through a calm nighttime setting where the couple sits together beneath a quiet sky surrounded by silence and stillness. The composition was designed to feel intimate, peaceful, and emotionally comforting, echoing the song’s themes of togetherness and emotional security."
+    },
+    {
+      "type": "image-text",
+      "variant": "image-text",
+      "src": "mockup.png",
+      "label": "The Concept",
+      "heading": "Rethinking the shelf presence.",
+      "body": "Sirhane Pe explores the idea that in a world full of chaos, two people can find solace and comfort in each other. With every glance and every touch, their hearts feel at home, creating a safe haven filled with love and peace.",
+      "labelRight": "The Execution",
+      "headingRight": "Visualizing comfort.",
+      "bodyRight": "The artwork visually translates this emotion through a calm nighttime setting where the couple sits together beneath a quiet sky surrounded by silence and stillness. The composition was designed to feel intimate, peaceful, and emotionally comforting, echoing the song’s themes of togetherness and emotional security."
+    },
+    {
+      "type": "slider",
+      "slides": [
+        { "src": "01.png", "caption": "Reference 1" },
+        { "src": "02.png", "caption": "Reference 2" },
+        { "src": "03.png", "caption": "Reference 3" },
+        { "src": "04.png", "caption": "Reference 4" }
+      ]
+    }
+  ]
+}

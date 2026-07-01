@@ -1,0 +1,26 @@
+{
+  "slug": "thode-se-hum-tum",
+  "title": "Thode Se Hum Tum",
+  "cover": "final.jpg",
+  "category": "album-cover-design",
+  "year": "2025",
+  "summary": "A romantic visual narrative built through layered texture, tone, and typographic detail.",
+  "accent": "#D6B46A",
+  "order": 3,
+  "writeup": "/projects/thode-se-hum-tum/writeup.pdf",
+  "sections": [
+    { "type": "artwork", "title": "Artwork", "assets": [
+      { "filename": "final.jpg" }
+    ] },
+    { "type": "mockups", "title": "Mockups", "assets": [
+      { "filename": "mockup.png" }
+    ] },
+    { "type": "refrences", "title": "Refrences", "assets": [
+      { "filename": "01.jpg" },
+      { "filename": "02.jpg" },
+      { "filename": "03.jpg" },
+      { "filename": "04.jpg" },
+      { "filename": "05.jpg" }
+    ] }
+  ]
+}

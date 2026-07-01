@@ -1,0 +1,94 @@
+{
+  "slug": "halke-phulke-redesign",
+  "title": "Halke Phulke Redesign",
+  "cover": "cover.png",
+  "archivePreview": "cover.png",
+  "category": "packaging-design",
+  "year": "2025",
+  "summary": "A refreshed packaging system that elevates lightness, appetite, and shelf presence.",
+  "accent": "#A8B59C",
+  "order": 4,
+  "contentBlocks": [
+    {
+      "type": "slider",
+      "slides": [
+        { "src": "cover.png", "caption": "Process step 1" },
+        { "src": "final.jpg", "caption": "Process step 2" },
+        { "src": "after.jpg" }
+      ]
+},
+    {
+      "type": "full-image",
+      "src": "final.jpg"
+    },
+    {
+      "type": "gallery-2",
+      "images": [
+        { "src": "packaging-mockup-1.jpg" },
+        { "src": "packaging-mockup-2.jpg" }
+      ]
+    },
+    {
+      "type": "statement",
+      "text": "Redesigning for shelf impact."
+    },
+    {
+      "type": "gallery-3",
+      "images": [
+        { 
+          "src": "blue.png",
+          "title": "Blue Edition",
+          "description": "A deep dive into oceanic hues, creating a refreshing and calm shelf presence.",
+          "metadata": "SKU / 01"
+        },
+        { 
+          "src": "green.png",
+          "title": "Green Edition",
+          "description": "Connecting with organic, earth-driven aesthetics for a natural and fresh appeal.",
+          "metadata": "SKU / 02"
+        },
+        { 
+          "src": "red.png",
+          "title": "Red Edition",
+          "description": "Bold, energetic, and appetizing colors designed to instantly stimulate the senses.",
+          "metadata": "SKU / 03"
+        }
+      ]
+    },
+    {
+      "type": "comparison",
+      "before": "before.jpg",
+      "after": "after.jpg",
+      "beforeLabel": "Original",
+      "afterLabel": "Redesign"
+    },
+    {
+      "type": "video",
+      "src": "halke-fulke-video.mp4"
+    },
+    {
+      "type": "horizontal-scroll",
+      "images": [
+        { "src": "green.png" },
+        { "src": "blue.png" },
+        { "src": "red.png" }
+      ]
+    },
+    {
+    "type": "timeline",
+    "steps": [
+      {
+        "number": "01",
+        "label": "Discovery",
+        "description": "Understanding the brand architecture."
+      },
+      {
+        "number": "02",
+        "label": "Design",
+        "description": "Creating the visual identity system."
+      }
+    ]
+  }
+
+  ]
+}

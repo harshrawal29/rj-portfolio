@@ -1,0 +1,22 @@
+{
+  "slug": "maysha",
+  "title": "Maysha",
+  "cover": "cover.jpeg",
+  "category": "packaging-design",
+  "year": "2025",
+  "summary": "Elegant product packaging guided by refined typography and tactile brand expression.",
+  "accent": "#C76D4F",
+  "order": 5,
+  "writeup": "/projects/maysha/writeup.pdf",
+  "sections": [
+    { "type": "mockups", "title": "Mockups", "assets": [
+      { "filename": "mockup.jpeg" }
+    ] },
+    { "type": "view", "title": "View", "assets": [
+      { "filename": "front.png" },
+      { "filename": "back.png" },
+      { "filename": "left.png" },
+      { "filename": "right.png" }
+    ] }
+  ]
+}
