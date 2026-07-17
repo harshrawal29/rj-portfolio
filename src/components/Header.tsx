@@ -8,7 +8,7 @@ function Header() {
         aria-label="Primary"
       >
         <a href="#hero" className="text-sm font-medium tracking-[0.24em] text-white">
-          RJ PORTFOLIO
+          Riya Jethani
         </a>
         <div className="hidden gap-6 text-sm text-neutral-300 md:flex">
           {navItems.map((item) => (

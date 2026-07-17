@@ -61,7 +61,7 @@ function Header() {
             onClick={handleNavigate}
             className="font-primary text-md font-normal tracking-[5px] uppercase transition-colors duration-300 text-white"
           >
-            RJ PORTFOLIO
+            Riya Jethani
           </Link>
           <button
             type="button"
