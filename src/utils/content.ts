@@ -100,10 +100,10 @@ export const skills = [
 
 export const copy = {
   loaderTitle: 'Opening Portfolio',
-  heroEyebrow: 'Creative Designer • Mumbai, India',
+  heroEyebrow: 'VISUAL COMMUNICATION DESIGNER • Mumbai, India',
   heroTitle: 'RIYA JETHANI',
-  heroSubtitle: 'DESIGNING VISUAL STORIES WITH EMOTION',
-  heroMeta: 'Editorial aesthetics, emotional storytelling, and modern visual experiences.',
+  heroSubtitle: 'CRAFTING VISUAL STORIES THAT LEAVE A LASTING IMPACT',
+  heroMeta: 'Creating meaningful experiences that connect people, ideas and brands through thoughtful visual communication.',
   statementEyebrow: 'Design Philosophy',
   statementLines: ['DESIGN', 'WITH', 'FEELING'],
   statementMeta: 'Story first. Emotion forward. Crafted to leave a lasting impression.',

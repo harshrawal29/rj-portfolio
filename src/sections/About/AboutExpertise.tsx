@@ -88,26 +88,27 @@ function AboutExpertise() {
   }, [])
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative overflow-hidden border-b border-black/10 bg-[#f3eee6] text-[#111111]"
-      aria-label="Areas of Expertise"
-    >
-      {/* ─── Full-height container with horizontal scroll ─── */}
-      <div className="flex min-h-screen flex-col justify-between py-12 sm:py-16 lg:py-20 w-full">
-        {/* Heading at the top */}
-        <div className="w-full max-w-7xl px-6 lg:px-10">
-          <h2 className="text-[8vw] font-bold leading-[0.85] tracking-[-0.06em] text-[#111111] sm:text-[4.5rem] lg:text-[6.5rem]">
-            Areas of<br />
-            expertise.
-          </h2>
-        </div>
+    <div className="bg-[#f3eee6]">
+      <section
+        ref={sectionRef}
+        className="relative overflow-hidden border-b border-black/10 bg-[#f3eee6] text-[#111111]"
+        aria-label="Areas of Expertise"
+      >
+        {/* ─── Full-height container with horizontal scroll ─── */}
+        <div className="flex min-h-screen flex-col justify-center md:justify-between gap-8 md:gap-0 py-12 sm:py-16 lg:py-20 w-full">
+          {/* Heading at the top */}
+          <div className="w-full max-w-7xl px-6 lg:px-10">
+            <h2 className="text-[12vw] font-bold leading-[0.85] tracking-[-0.06em] text-[#111111] sm:text-[4.5rem] lg:text-[6.5rem]">
+              Areas of<br />
+              expertise.
+            </h2>
+          </div>
 
-        <div
-          ref={cardsContainerRef}
-          data-expertise-panel
-          className="flex w-full overflow-hidden py-12 px-6 lg:px-10"
-        >
+          <div
+            ref={cardsContainerRef}
+            data-expertise-panel
+            className="flex w-full overflow-hidden py-4 md:py-12 px-6 lg:px-10"
+          >
           {/* ─── Single-row staggered cards ─── */}
           <div data-cards-track className="flex w-max items-center pl-6 pr-12 md:pl-12 md:pr-24 lg:pl-20 lg:pr-32">
             {expertiseItems.map((item, i) => {
@@ -154,8 +155,9 @@ function AboutExpertise() {
             <div className="w-12 sm:w-20 shrink-0" />
           </div>
         </div>
-      </div>
-    </section>
+        </div>
+      </section>
+    </div>
   )
 }
 

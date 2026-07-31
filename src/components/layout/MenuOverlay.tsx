@@ -74,9 +74,13 @@ function MenuOverlay({
         const rect = textSpan.getBoundingClientRect()
         const xOffset = window.innerWidth / 2 - (rect.left + rect.width / 2)
         const yOffset = window.innerHeight / 2 - (rect.top + rect.height / 2)
+        
+        // Dynamically calculate scale so it never overflows the screen width
+        const maxScale = (window.innerWidth * 0.75) / rect.width
+        const targetScale = Math.min(2.5, maxScale)
 
         gsap.to(textSpan, {
-          scale: 2.5,
+          scale: targetScale,
           x: xOffset,
           y: yOffset,
           color: item.accent,

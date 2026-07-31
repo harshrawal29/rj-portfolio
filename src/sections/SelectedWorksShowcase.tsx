@@ -130,13 +130,13 @@ export default function SelectedWorksShowcase() {
       <div className="relative z-10 w-full max-w-7xl px-6 lg:px-10 mb-16 sm:mb-20 flex flex-col showcase-header">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-12">
           <h2 className="flex flex-col text-[10vw] font-semibold uppercase leading-[0.85] tracking-[-0.02em] text-white sm:text-[4rem] lg:text-[5.5rem]">
-            <span>Curated</span>
-            <span className="text-white/50">Works</span>
+            <span>VISUAL</span>
+            <span className="text-white/50">STORIES</span>
           </h2>
 
           <div className="flex max-w-sm flex-col gap-6 sm:items-end sm:text-right pb-2">
             <p className="text-sm leading-relaxed text-neutral-400 sm:text-base">
-              A selection of projects exploring brand identity, editorial layout, and digital experiences driven by deep emotional resonance.
+              A showcase of projects exploring creativity, strategy and meaningful visual experiences.
             </p>
             <Link
               to="/work"
@@ -208,11 +208,11 @@ function ProjectCard({ project }: { project: Project }) {
     e.preventDefault()
     if (!imageRef.current) return
     const rect = imageRef.current.getBoundingClientRect()
-    
+
     // Remove any existing clone
     const oldClone = document.getElementById('hero-transition-clone')
     if (oldClone) oldClone.remove()
-    
+
     const clone = imageRef.current.cloneNode(true) as HTMLImageElement
     clone.id = 'hero-transition-clone'
     clone.style.position = 'fixed'
@@ -226,7 +226,7 @@ function ProjectCard({ project }: { project: Project }) {
     clone.style.transform = 'none'
     clone.style.pointerEvents = 'none'
     clone.style.transition = 'none'
-    
+
     document.body.appendChild(clone)
 
     // Hide the clicked card entirely (clone takes over)

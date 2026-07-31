@@ -44,28 +44,42 @@ export default function ContentBlockRenderer({
     resolvedBlock.after = resolve(resolvedBlock.after)
   }
 
-  switch (resolvedBlock.type) {
-    case 'full-image':
-      return <FullImageBlock block={resolvedBlock} />
-    case 'image-text':
-      return <ImageTextBlock block={resolvedBlock} index={index} />
-    case 'statement':
-      return <StatementBlock block={resolvedBlock} />
-    case 'comparison':
-      return <ComparisonBlock block={resolvedBlock} />
-    case 'gallery-2':
-      return <Gallery2Block block={resolvedBlock} />
-    case 'gallery-3':
-      return <Gallery3Block block={resolvedBlock} />
-    case 'slider':
-      return <SliderBlock block={resolvedBlock} />
-    case 'video':
-      return <VideoBlock block={resolvedBlock} />
-    case 'horizontal-scroll':
-      return <HorizontalScrollBlock block={resolvedBlock} />
-    case 'timeline':
-      return <TimelineBlock block={resolvedBlock} />
-    default:
-      return null
+  const renderBlock = () => {
+    switch (resolvedBlock.type) {
+      case 'full-image':
+        return <FullImageBlock block={resolvedBlock} />
+      case 'image-text':
+        return <ImageTextBlock block={resolvedBlock} index={index} />
+      case 'statement':
+        return <StatementBlock block={resolvedBlock} />
+      case 'comparison':
+        return <ComparisonBlock block={resolvedBlock} />
+      case 'gallery-2':
+        return <Gallery2Block block={resolvedBlock} />
+      case 'gallery-3':
+        return <Gallery3Block block={resolvedBlock} />
+      case 'slider':
+        return <SliderBlock block={resolvedBlock} />
+      case 'video':
+        return <VideoBlock block={resolvedBlock} />
+      case 'horizontal-scroll':
+        return <HorizontalScrollBlock block={resolvedBlock} />
+      case 'timeline':
+        return <TimelineBlock block={resolvedBlock} />
+      default:
+        return null
+    }
   }
+
+  const content = renderBlock()
+
+  if (resolvedBlock.backgroundColor && content) {
+    return (
+      <div style={{ backgroundColor: resolvedBlock.backgroundColor }} className="py-16 md:py-24 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-10 lg:px-10">
+        {content}
+      </div>
+    )
+  }
+
+  return content
 }

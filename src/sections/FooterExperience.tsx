@@ -296,15 +296,15 @@ export default function FooterExperience() {
           <h2
             id="footer-heading"
             className="font-medium leading-[1.05] tracking-[-0.03em] text-white"
-            style={{ fontSize: 'clamp(2.5rem, 6.5vw, 5.5rem)' }}
+            style={{ fontSize: 'clamp(2rem, 6.5vw, 5.5rem)' }}
           >
             <div className="overflow-hidden pb-[0.15em]">
               <span className="footer-heading-line block will-change-transform">
                 Ready to create
               </span>
             </div>
-            <div className="overflow-hidden pb-[0.6em] mb-[-0.6em] px-8">
-              <span className="footer-heading-line block pb-[0.6em] pt-[0.2em] pr-8 will-change-transform font-extralight text-transparent bg-clip-text bg-linear-to-r from-orange-500 to-indigo-400 whitespace-nowrap leading-[1.3]">
+            <div className="overflow-hidden pb-[0.6em] mb-[-0.6em] px-2 md:px-8">
+              <span className="footer-heading-line block pb-[0.6em] pt-[0.2em] px-2 md:px-8 will-change-transform font-extralight text-transparent bg-clip-text bg-linear-to-r from-orange-500 to-indigo-400 leading-[1.3]">
                 something meaningful?
               </span>
             </div>

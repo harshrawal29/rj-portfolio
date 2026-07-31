@@ -72,14 +72,18 @@ export type ContentBlock =
   | TimelineBlock
   | HorizontalScrollBlock
 
-export interface FullImageBlock {
+export interface BaseContentBlock {
+  backgroundColor?: string
+}
+
+export interface FullImageBlock extends BaseContentBlock {
   type: 'full-image'
   src: string
   alt?: string
   caption?: string
 }
 
-export interface ImageTextBlock {
+export interface ImageTextBlock extends BaseContentBlock {
   type: 'image-text'
   variant?: 'text-image' | 'image-text' | 'text-text'
   src?: string
@@ -92,12 +96,12 @@ export interface ImageTextBlock {
   bodyRight?: string
 }
 
-export interface StatementBlock {
+export interface StatementBlock extends BaseContentBlock {
   type: 'statement'
   text: string
 }
 
-export interface ComparisonBlock {
+export interface ComparisonBlock extends BaseContentBlock {
   type: 'comparison'
   before: string
   after: string
@@ -105,7 +109,7 @@ export interface ComparisonBlock {
   afterLabel?: string
 }
 
-export interface Gallery2Block {
+export interface Gallery2Block extends BaseContentBlock {
   type: 'gallery-2'
   images: [
     { src: string; alt?: string },
@@ -113,7 +117,7 @@ export interface Gallery2Block {
   ]
 }
 
-export interface Gallery3Block {
+export interface Gallery3Block extends BaseContentBlock {
   type: 'gallery-3'
   images: [
     { src: string; alt?: string; title?: string; description?: string; metadata?: string },
@@ -122,7 +126,7 @@ export interface Gallery3Block {
   ]
 }
 
-export interface SliderBlock {
+export interface SliderBlock extends BaseContentBlock {
   type: 'slider'
   slides: Array<{
     src: string
@@ -131,14 +135,14 @@ export interface SliderBlock {
   }>
 }
 
-export interface VideoBlock {
+export interface VideoBlock extends BaseContentBlock {
   type: 'video'
   src: string
   poster?: string
   autoPlay?: boolean
 }
 
-export interface TimelineBlock {
+export interface TimelineBlock extends BaseContentBlock {
   type: 'timeline'
   steps: Array<{
     number: string | number
@@ -147,7 +151,7 @@ export interface TimelineBlock {
   }>
 }
 
-export interface HorizontalScrollBlock {
+export interface HorizontalScrollBlock extends BaseContentBlock {
   type: 'horizontal-scroll'
   images: Array<{
     src: string

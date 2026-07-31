@@ -37,15 +37,15 @@ export default function SliderBlock({ block }: { block: SliderBlockType }) {
   if (!block || !block.slides || block.slides.length === 0) return null;
 
   return (
-    <section className="w-full min-h-[90vh] py-12 lg:py-16 bg-[#FCFCFC] flex flex-col items-center justify-center overflow-hidden">
+    <section className="w-full min-h-0 md:min-h-[60vh] py-8 md:py-12 bg-[#FCFCFC] flex flex-col items-center justify-center overflow-hidden">
       <div className="w-full px-4 md:px-8 max-w-[1800px] mx-auto">
 
         {/* Desktop & Tablet Layout */}
-        <div className="hidden md:flex w-full max-w-[900px] lg:max-w-[1100px] mx-auto justify-center items-center gap-2 lg:gap-6 h-[50vh] lg:h-[60vh] mb-10 lg:mb-12">
+        <div className="hidden md:flex w-full max-w-[1000px] lg:max-w-[1300px] mx-auto justify-center items-center gap-4 lg:gap-8 h-[50vh] lg:h-[60vh] mb-4 lg:mb-6">
 
           {/* Left Column */}
           <div
-            className="relative w-[25%] h-[60%] lg:h-[70%] cursor-pointer group flex items-center justify-center shrink-0"
+            className="relative w-[15%] lg:w-[20%] h-[70%] lg:h-[80%] cursor-pointer group flex items-center justify-center shrink-0"
             onClick={prev}
           >
             <AnimatePresence>
@@ -66,7 +66,7 @@ export default function SliderBlock({ block }: { block: SliderBlockType }) {
           </div>
 
           {/* Center Column */}
-          <div className="relative w-[50%] h-full flex items-center justify-center shrink-0">
+          <div className="relative w-[70%] lg:w-[60%] h-full flex items-center justify-center shrink-0">
             <AnimatePresence>
               <motion.img
                 key={`center-${current}`}
@@ -84,7 +84,7 @@ export default function SliderBlock({ block }: { block: SliderBlockType }) {
 
           {/* Right Column */}
           <div
-            className="relative w-[25%] h-[60%] lg:h-[70%] cursor-pointer group flex items-center justify-center shrink-0"
+            className="relative w-[15%] lg:w-[20%] h-[70%] lg:h-[80%] cursor-pointer group flex items-center justify-center shrink-0"
             onClick={next}
           >
             <AnimatePresence>
@@ -106,15 +106,15 @@ export default function SliderBlock({ block }: { block: SliderBlockType }) {
         </div>
 
         {/* Mobile Layout */}
-        <div className="flex md:hidden flex-col gap-4 w-full mb-8">
+        <div className="flex md:hidden flex-col gap-4 w-full mb-4">
           {/* Main Image */}
-          <div className="relative w-full h-[45vh] flex items-center justify-center">
+          <div className="relative w-full aspect-[4/3] flex items-center justify-center">
             <AnimatePresence>
               <motion.img
                 key={`mobile-center-${current}`}
                 src={block.slides[current].src}
                 alt={block.slides[current].alt ?? 'Current slide'}
-                className="absolute w-[95%] h-[95%] object-contain"
+                className="absolute w-full h-full object-contain"
                 variants={imageVariants}
                 initial="initial"
                 animate="animate"
@@ -125,14 +125,14 @@ export default function SliderBlock({ block }: { block: SliderBlockType }) {
           </div>
 
           {/* Supporting Images */}
-          <div className="grid grid-cols-2 gap-3 w-full h-[20vh]">
+          <div className="grid grid-cols-2 gap-3 w-full aspect-[2/1]">
             <div className="relative w-full h-full flex items-center justify-center" onClick={prev}>
               <AnimatePresence>
                 <motion.img
                   key={`mobile-prev-${prevIndex}`}
                   src={block.slides[prevIndex].src}
                   alt={block.slides[prevIndex].alt ?? 'Previous slide'}
-                  className="absolute w-[90%] h-[90%] object-contain"
+                  className="absolute w-full h-full object-contain"
                   variants={imageVariants}
                   initial="initial"
                   animate="animate"
@@ -147,7 +147,7 @@ export default function SliderBlock({ block }: { block: SliderBlockType }) {
                   key={`mobile-next-${nextIndex}`}
                   src={block.slides[nextIndex].src}
                   alt={block.slides[nextIndex].alt ?? 'Next slide'}
-                  className="absolute w-[90%] h-[90%] object-contain"
+                  className="absolute w-full h-full object-contain"
                   variants={imageVariants}
                   initial="initial"
                   animate="animate"
@@ -160,7 +160,7 @@ export default function SliderBlock({ block }: { block: SliderBlockType }) {
         </div>
 
         {/* Navigation & Details */}
-        <div className="flex flex-col items-center justify-center mt-4 md:mt-8">
+        <div className="flex flex-col items-center justify-center mt-2 md:mt-4">
           <div className="h-8 md:h-12 flex items-center justify-center mb-6">
             <AnimatePresence mode="wait">
               {block.slides[current]?.caption && (
