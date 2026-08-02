@@ -136,13 +136,13 @@ export default function SelectedWorksShowcase() {
 
           <div className="flex max-w-sm flex-col gap-6 sm:items-end sm:text-right pb-2">
             <p className="text-sm leading-relaxed text-neutral-400 sm:text-base">
-              A showcase of projects exploring creativity, strategy and meaningful visual experiences.
+              A look at projects shaped by creativity, strategy and visual experiences that mean something.
             </p>
             <Link
               to="/work"
               className="group flex w-max items-center gap-4 text-xs uppercase tracking-[0.2em] text-white/60 transition-colors duration-300 hover:text-white"
             >
-              <span>Explore Archive</span>
+              <span>Explore PROJECTS</span>
               <div className="relative flex items-center justify-center">
                 <div className="h-[1px] w-8 bg-white/60 transition-all duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] group-hover:w-16 group-hover:bg-white" />
                 <div className="absolute right-0 h-[5px] w-[5px] translate-x-full rounded-full bg-white opacity-0 transition-all duration-500 group-hover:opacity-100 group-hover:translate-x-[2px]" />

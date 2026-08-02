@@ -4,17 +4,19 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { createAboutExpertiseAnimation } from '../../animations/aboutAnimations'
 import { useScrollReveal } from '../../hooks/useScrollReveal'
 
-import { Disc3, Feather, Package, Printer, Smartphone, Sparkles } from 'lucide-react'
+import { Disc3, Feather, Package, Printer, Smartphone, AppWindowMac, Sparkles, PencilSparkles } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
 
 const expertiseItems = [
-  { title: 'Brand Identity', desc: 'Comprehensive systems with distinct personalities.', icon: Sparkles },
-  { title: 'Album Cover Design', desc: 'Visual resonance for sonic landscapes.', icon: Disc3 },
-  { title: 'Packaging Design', desc: 'Tactile experiences and unboxing narratives.', icon: Package },
-  { title: 'Visual Storytelling', desc: 'Narrative-driven campaigns and art direction.', icon: Feather },
-  { title: 'Print Design', desc: 'Editorial layouts, posters, and physical collateral.', icon: Printer },
-  { title: 'Social Media Design', desc: 'Engaging content tailored for digital spaces.', icon: Smartphone },
+  { title: 'Brand Identity', desc: 'Building identities that go further than just a logo, thoughtful and consistent work made to help a brand get noticed and remembered.', icon: Sparkles },
+  { title: 'Packaging Design', desc: 'Packaging built to look right on the shelf and feel right in hand, made to leave a strong first impression that actually sticks.', icon: Package },
+  { title: 'Logo Design', desc: 'A logo is more than a symbol, it\'s the face of a brand, designed to hold up over time, stand out and mean something.', icon: Disc3 },
+  { title: 'Website Design & Development', desc: 'Websites built to look good, work well and hold up across devices, designed with the user in mind at every step.', icon: Feather },
+  { title: 'Illustration & Visual Storytelling', desc: 'Turning ideas into visuals that simplify a message, add some emotion and bring a story to life.', icon: Printer },
+  { title: 'Digital Design', desc: 'Creative work for social media, digital campaigns, thumbnails, presentations and other online formats, made to grab attention and hold onto it.', icon: AppWindowMac },
+  { title: 'Print Design', desc: 'Print work built to make an impact, from billboards and transit ads to brochures, posters and other marketing material.', icon: Printer },
+  { title: 'Editorial Design', desc: 'Layouts designed to bring clarity, structure and visual appeal to every page.', icon: PencilSparkles },
 ]
 
 /*
@@ -99,8 +101,7 @@ function AboutExpertise() {
           {/* Heading at the top */}
           <div className="w-full max-w-7xl px-6 lg:px-10">
             <h2 className="text-[12vw] font-bold leading-[0.85] tracking-[-0.06em] text-[#111111] sm:text-[4.5rem] lg:text-[6.5rem]">
-              Areas of<br />
-              expertise.
+              DESIGN SERVICES
             </h2>
           </div>
 
@@ -109,52 +110,52 @@ function AboutExpertise() {
             data-expertise-panel
             className="flex w-full overflow-hidden py-4 md:py-12 px-6 lg:px-10"
           >
-          {/* ─── Single-row staggered cards ─── */}
-          <div data-cards-track className="flex w-max items-center pl-6 pr-12 md:pl-12 md:pr-24 lg:pl-20 lg:pr-32">
-            {expertiseItems.map((item, i) => {
-              const placement = cardPlacements[i]
-              return (
-                <div
-                  key={i}
-                  data-card-wrapper
-                  data-depth={placement.depth}
-                  className="will-change-transform"
-                  style={{
-                    marginLeft: i === 0 ? '0' : '-24px',
-                    transform: `translateY(${placement.offsetY}px)`,
-                    zIndex: i + 1,
-                    flexShrink: 0,
-                  }}
-                >
+            {/* ─── Single-row staggered cards ─── */}
+            <div data-cards-track className="flex w-max items-center pl-6 pr-12 md:pl-12 md:pr-24 lg:pl-20 lg:pr-32">
+              {expertiseItems.map((item, i) => {
+                const placement = cardPlacements[i % cardPlacements.length]
+                return (
                   <div
-                    data-expertise-card
-                    className="relative flex aspect-square w-[260px] flex-col justify-between overflow-hidden rounded-[2rem] border border-black/[0.08] bg-[#fcfcfc] p-6 will-change-transform sm:w-[300px] sm:p-8 lg:w-[340px] lg:p-10 shadow-sm"
+                    key={i}
+                    data-card-wrapper
+                    data-depth={placement.depth}
+                    className="will-change-transform"
+                    style={{
+                      marginLeft: i === 0 ? '0' : '-24px',
+                      transform: `translateY(${placement.offsetY}px)`,
+                      zIndex: i + 1,
+                      flexShrink: 0,
+                    }}
                   >
-                    {/* Decorative outline illustration at 5% opacity */}
-                    <item.icon
-                      className="absolute -right-6 -bottom-6 h-48 w-48 select-none pointer-events-none text-black/[0.03] -rotate-12"
-                      strokeWidth={0.4}
-                    />
+                    <div
+                      data-expertise-card
+                      className="relative flex aspect-square w-[260px] flex-col justify-between overflow-hidden rounded-[2rem] border border-black/[0.08] bg-[#fcfcfc] p-6 will-change-transform sm:w-[300px] sm:p-8 lg:w-[340px] lg:p-10 shadow-sm"
+                    >
+                      {/* Decorative outline illustration at 5% opacity */}
+                      <item.icon
+                        className="absolute -right-6 -bottom-6 h-48 w-48 select-none pointer-events-none text-black/[0.03] -rotate-12"
+                        strokeWidth={0.4}
+                      />
 
-                    <div className="relative z-10">
-                      <item.icon className="h-14 w-14 text-[#ff5e00] sm:h-16 sm:w-16" strokeWidth={1.5} />
-                    </div>
-                    <div className="relative z-10 mt-8">
-                      <h3 className="text-xl font-medium leading-tight tracking-tight text-[#111111] sm:text-2xl lg:text-[1.75rem]">
-                        {item.title}
-                      </h3>
-                      <p className="mt-2 text-sm leading-relaxed text-black/60 sm:text-base lg:mt-3">
-                        {item.desc}
-                      </p>
+                      <div className="relative z-10">
+                        <item.icon className="h-14 w-14 text-[#ff5e00] sm:h-16 sm:w-16" strokeWidth={1.5} />
+                      </div>
+                      <div className="relative z-10 mt-8">
+                        <h3 className="text-xl font-medium leading-tight tracking-tight text-[#111111] sm:text-2xl lg:text-[1.75rem]">
+                          {item.title}
+                        </h3>
+                        <p className="mt-2 text-sm leading-relaxed text-black/60 sm:text-base lg:mt-3">
+                          {item.desc}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              )
-            })}
-            {/* Explicit spacer to ensure last card has room */}
-            <div className="w-12 sm:w-20 shrink-0" />
+                )
+              })}
+              {/* Explicit spacer to ensure last card has room */}
+              <div className="w-12 sm:w-20 shrink-0" />
+            </div>
           </div>
-        </div>
         </div>
       </section>
     </div>

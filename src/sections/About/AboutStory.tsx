@@ -3,10 +3,11 @@ import { createAboutStoryAnimation } from '../../animations/aboutAnimations'
 import { useScrollReveal } from '../../hooks/useScrollReveal'
 
 const storyParagraphs = [
-  'Riya Jethani is a Mumbai-based creative designer who explores how ideas can be transformed into meaningful visual experiences.',
-  'Her design philosophy is that effective design goes beyond aesthetics. It should tell a story, evoke emotions, and create a lasting impact.',
-  'Her creative process is rooted in emotional storytelling, where ideas are explored both visually and emotionally.',
-  'She is constantly exploring new techniques and views every project as an opportunity to push creative boundaries and create something unique.',
+  'Hi, I\'m Riya, a visual communication designer. I turn ideas into visuals, coffee into fuel and the odd random observation into design inspiration.',
+  'I think good design needs to do more than just look good. It has to communicate clearly, stir some emotion and stay with people after they\'ve seen it.',
+  'Curiosity drives most of what I make. I like digging into ideas, trying out different perspectives and figuring out how to turn a concept into something worth looking at.',
+  <span key="discipline">I live by the line, <strong className="font-semibold text-black">"Discipline makes today hard and tomorrow easy."</strong> It's a good reminder that ideas rarely arrive fully formed. They take shape slowly, through consistency, learning and a lot of trial and error.</span>,
+  "Small things inspire me the most. A colour pairing spotted on the street, an odd-shaped shadow, a bit of conversation overheard at a café, some tiny detail most people wouldn't notice at all. Those moments usually end up being where my next idea starts. If I have a superpower, it's probably that: spotting creative potential in ordinary moments."
 ]
 
 function AboutStory() {
@@ -52,9 +53,9 @@ function AboutStory() {
             </h2>
 
             <div className="mt-8 space-y-4 sm:mt-10 sm:space-y-5">
-              {storyParagraphs.map((paragraph) => (
+              {storyParagraphs.map((paragraph, index) => (
                 <p
-                  key={paragraph}
+                  key={typeof paragraph === 'string' ? paragraph : index}
                   data-about-story-paragraph
                   className="max-w-2xl text-base leading-8 text-black/68 sm:text-lg sm:leading-9"
                 >

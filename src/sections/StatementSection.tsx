@@ -7,7 +7,7 @@ function StatementSection() {
 
   useScrollReveal(sectionRef, createStatementAnimation)
 
-  const text = "Ready to shape the extraordinary?"
+  const text = "Ready to bring your ideas to life?"
 
   const letters = text.split('')
 

@@ -39,7 +39,7 @@ function AboutInspiration() {
                 data-about-inspiration-label
                 className="mt-5 max-w-4xl text-[13vw] font-semibold leading-[0.9] tracking-[-0.08em] text-[#111111] sm:text-6xl lg:text-[5.25rem]"
               >
-                What Shapes My Work
+                WHAT INSPIRES ME
               </h2>
             </div>
 
@@ -50,18 +50,18 @@ function AboutInspiration() {
               >
                 Scroll To Explore &darr;
               </p>
-              
+
               <div className="relative flex flex-col">
-                <div 
+                <div
                   data-inspiration-track
-                  className="absolute right-4 md:right-6 w-[2px] bg-black/10 origin-top translate-x-1/2" 
+                  className="absolute right-4 md:right-6 w-[2px] bg-black/10 origin-top translate-x-1/2"
                 />
-                <div 
+                <div
                   data-inspiration-progress
                   className="absolute right-4 md:right-6 w-[2px] bg-[#111111] origin-top will-change-[height] translate-x-1/2"
                 />
-                <div 
-                  data-inspiration-marker 
+                <div
+                  data-inspiration-marker
                   className="absolute right-4 md:right-6 top-0 h-2 w-2 rounded-full bg-[#111111] z-10 will-change-transform translate-x-1/2"
                 />
 
@@ -76,19 +76,19 @@ function AboutInspiration() {
                       <div
                         data-inspiration-text
                         className="relative text-[8vw] uppercase leading-[0.85] tracking-[-0.06em] sm:text-[3.5rem] will-change-transform"
-                        style={{ 
+                        style={{
                           transform: index === 0 ? 'scale(1.02)' : 'scale(1)',
-                          transformOrigin: 'left center' 
+                          transformOrigin: 'left center'
                         }}
                       >
-                        <span 
+                        <span
                           data-inspiration-text-bold
                           className="block font-semibold will-change-[opacity]"
                           style={{ opacity: index === 0 ? 1 : 0 }}
                         >
                           {item.title}
                         </span>
-                        <span 
+                        <span
                           data-inspiration-text-thin
                           className="absolute left-0 top-0 block font-normal will-change-[opacity]"
                           style={{ opacity: index === 0 ? 0 : 1 }}
@@ -97,10 +97,10 @@ function AboutInspiration() {
                         </span>
                       </div>
                       <div className="relative flex items-center justify-center w-8 md:w-12 bg-[#f3eee6] py-2 z-20">
-                        <span 
+                        <span
                           data-inspiration-number
                           className="text-[0.65rem] uppercase tracking-[0.35em] lg:text-xs will-change-[opacity,transform]"
-                          style={{ 
+                          style={{
                             opacity: index === 0 ? 1 : 0.3,
                             fontWeight: index === 0 ? 600 : 400,
                             transform: index === 0 ? 'scale(1.2)' : 'scale(1)'
