@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { createAboutExpertiseAnimation } from '../../animations/aboutAnimations'
 import { useScrollReveal } from '../../hooks/useScrollReveal'
 
-import { Disc3, Feather, Package, Printer, Smartphone, AppWindowMac, Sparkles, PencilSparkles } from 'lucide-react'
+import { Disc3, Feather, Package, Printer, AppWindowMac, Sparkles, PencilSparkles } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
 
