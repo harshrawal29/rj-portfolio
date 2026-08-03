@@ -1,7 +1,20 @@
 import type { Category } from '../../types/portfolio'
-import { fetchManifest } from './fetchManifest'
+import { sanityClient } from '../sanity'
 
 export async function getCategories(): Promise<Category[]> {
-  const manifest = await fetchManifest()
-  return [...manifest.categories].sort((a, b) => a.order - b.order)
+  const query = `*[_type == "category"] | order(order asc) {
+    title,
+    "slug": slug.current,
+    description,
+    "coverImage": coverImage.asset->url,
+    order
+  }`
+  
+  try {
+    const categories = await sanityClient.fetch(query)
+    return categories
+  } catch (error) {
+    console.error("Error fetching categories from Sanity", error)
+    return []
+  }
 }

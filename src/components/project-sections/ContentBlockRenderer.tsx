@@ -20,7 +20,10 @@ export default function ContentBlockRenderer({
   projectSlug: string
 }) {
   const basePath = `/projects/${projectSlug}/`
-  const resolve = (path: string) => path.startsWith('/') ? path : `${basePath}${path}`
+  const resolve = (path?: string) => {
+    if (!path) return ''
+    return path.startsWith('http') ? path : path.startsWith('/') ? path : `${basePath}${path}`
+  }
 
   // Clone the block to resolve all paths automatically
   const resolvedBlock = JSON.parse(JSON.stringify(block)) as ContentBlock

@@ -2,7 +2,7 @@ import { useLoaderData } from 'react-router-dom'
 import { useRef } from 'react'
 import WorkArchive from '../../components/work/WorkArchive'
 import type { Category, CategorySlug, ProjectSummary } from '../../types/portfolio'
-import { fetchManifest } from '../../lib/portfolio/fetchManifest'
+import { getCategories } from '../../lib/portfolio/getCategories'
 import { getProjects } from '../../lib/portfolio/getProjects'
 import FooterExperience from '../../sections/FooterExperience'
 
@@ -13,9 +13,7 @@ interface WorkIndexLoaderData {
 }
 
 export async function loader(): Promise<WorkIndexLoaderData> {
-  const [manifest, projects] = await Promise.all([fetchManifest(), getProjects()])
-
-  const categories = [...manifest.categories].sort((a, b) => a.order - b.order)
+  const [categories, projects] = await Promise.all([getCategories(), getProjects()])
   const projectCounts = Object.fromEntries(
     categories.map((category) => [
       category.slug,

@@ -98,6 +98,27 @@ export default function EditorialProjectStory({ project }: { project: Project })
               </ul>
             </motion.div>
           )}
+
+          {project.challenge && (
+            <motion.div variants={itemVariants} className="flex flex-col gap-1">
+              <p className="text-[10px] md:text-xs tracking-[0.1em] uppercase text-gray-400">{project.challengeHeading || 'Challenge'}</p>
+              <p className="text-sm md:text-base font-medium">{project.challenge}</p>
+            </motion.div>
+          )}
+
+          {project.approach && (
+            <motion.div variants={itemVariants} className="flex flex-col gap-1">
+              <p className="text-[10px] md:text-xs tracking-[0.1em] uppercase text-gray-400">{project.approachHeading || 'Approach'}</p>
+              <p className="text-sm md:text-base font-medium">{project.approach}</p>
+            </motion.div>
+          )}
+
+          {project.outcome && (
+            <motion.div variants={itemVariants} className="flex flex-col gap-1">
+              <p className="text-[10px] md:text-xs tracking-[0.1em] uppercase text-gray-400">{project.outcomeHeading || 'Outcome'}</p>
+              <p className="text-sm md:text-base font-medium">{project.outcome}</p>
+            </motion.div>
+          )}
         </div>
 
       </motion.div>

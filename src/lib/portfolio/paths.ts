@@ -19,6 +19,7 @@ export function projectSectionPath(
   section: string,
   filename?: string,
 ): string {
+  if (filename?.startsWith('http')) return filename
   const base = `${projectBasePath(slug)}/${section}`
   return filename ? `${base}/${filename}` : base
 }

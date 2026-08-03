@@ -1,15 +1,25 @@
 import type { ProjectSummary } from '../../types/portfolio'
-import { fetchManifest } from './fetchManifest'
-import { getProjectBySlug } from './getProjectBySlug'
+import { sanityClient } from '../sanity'
 
 export async function getProjects(): Promise<ProjectSummary[]> {
-  const manifest = await fetchManifest()
-  const projects = await Promise.all(
-    manifest.projects.map(async (manifestProject) => {
-      const project = await getProjectBySlug(manifestProject.slug)
-      return project ?? manifestProject
-    }),
-  )
-
-  return projects.sort((a, b) => a.order - b.order)
+  const query = `*[_type == "project"] | order(order asc) {
+    title,
+    "slug": slug.current,
+    "category": category->slug.current,
+    year,
+    "cover": coverImage.asset->url,
+    summary,
+    client,
+    services,
+    eyebrow,
+    order
+  }`
+  
+  try {
+    const projects = await sanityClient.fetch(query)
+    return projects
+  } catch (error) {
+    console.error("Error fetching projects from Sanity", error)
+    return []
+  }
 }

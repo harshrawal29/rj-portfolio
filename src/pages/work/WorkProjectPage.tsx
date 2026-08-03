@@ -160,78 +160,6 @@ function LegacySectionBlock({ section, projectSlug }: { section: ProjectSection;
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   WRITEUP SECTION
-   ═══════════════════════════════════════════════════════════════ */
-
-/*
-function WriteupSection({ writeupUrl, title }: { writeupUrl: string; title: string }) {
-  const [isFullscreen, setIsFullscreen] = useState(false)
-  const sectionRef = useRef<HTMLElement>(null)
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const els = sectionRef.current?.querySelectorAll('.writeup-reveal')
-      if (els?.length) {
-        gsap.fromTo(
-          els,
-          { y: 60, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 1.2,
-            stagger: 0.2,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: 'top 85%',
-              toggleActions: 'play none none none',
-            },
-          }
-        )
-      }
-    }, sectionRef)
-    return () => ctx.revert()
-  }, [])
-
-  return (
-    <section ref={sectionRef} className="case-study__writeup">
-      <div className="case-study__writeup-inner">
-        <h2 className="writeup-reveal case-study__writeup-label">Case Study</h2>
-        <h3 className="writeup-reveal case-study__writeup-heading">
-          Read the complete editorial writeup for {title}.
-        </h3>
-        <div
-          className={`writeup-reveal case-study__writeup-frame ${isFullscreen ? 'case-study__writeup-frame--fs' : ''
-            }`}
-          style={isFullscreen ? {
-            position: 'fixed',
-            inset: 0,
-            zIndex: 50,
-            height: '100dvh',
-            borderRadius: 0,
-            maxWidth: 'none',
-          } : undefined}
-        >
-          <div className="case-study__writeup-toolbar">
-            <button
-              onClick={() => setIsFullscreen(!isFullscreen)}
-              className="case-study__writeup-btn"
-            >
-              {isFullscreen ? 'Close Fullscreen' : 'View Fullscreen'}
-            </button>
-          </div>
-          <iframe
-            src={`${writeupUrl}#view=FitH`}
-            title={`${title} Writeup`}
-          />
-        </div>
-      </div>
-    </section>
-  )
-}
-*/
-
-/* ═══════════════════════════════════════════════════════════════
    MAIN COMPONENT
    ═══════════════════════════════════════════════════════════════ */
 
@@ -416,7 +344,7 @@ export function Component() {
             <img
               data-project-hero
               ref={imageRef}
-              src={`/projects/${project.slug}/${project.cover}`}
+              src={project.cover.startsWith('http') ? project.cover : `/projects/${project.slug}/${project.cover}`}
               alt={project.title}
               className="case-study__hero-img"
             />
@@ -445,29 +373,7 @@ export function Component() {
       {/* ── STORY SECTION ───────────────────────────────────── */}
       <EditorialProjectStory project={project} />
 
-      {/* ── NARRATIVE (Challenge / Approach / Outcome) ─────── */}
-      {hasNarrative && (
-        <section className="case-study__narrative">
-          {project.challenge && (
-            <div className="narrative-reveal case-study__narrative-item">
-              <h3 className="case-study__narrative-label">Challenge</h3>
-              <p className="case-study__narrative-text">{project.challenge}</p>
-            </div>
-          )}
-          {project.approach && (
-            <div className="narrative-reveal case-study__narrative-item">
-              <h3 className="case-study__narrative-label">Approach</h3>
-              <p className="case-study__narrative-text">{project.approach}</p>
-            </div>
-          )}
-          {project.outcome && (
-            <div className="narrative-reveal case-study__narrative-item">
-              <h3 className="case-study__narrative-label">Outcome</h3>
-              <p className="case-study__narrative-text">{project.outcome}</p>
-            </div>
-          )}
-        </section>
-      )}
+
 
       {/* ── EDITORIAL CONTENT BLOCKS ────────────────────────── */}
       {hasContentBlocks && (

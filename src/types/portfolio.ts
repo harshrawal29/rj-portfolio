@@ -51,10 +51,12 @@ export interface ProjectSummary {
 }
 
 export interface Project extends ProjectSummary {
-  writeup: string
   editorialStory?: string
+  challengeHeading?: string
   challenge?: string
+  approachHeading?: string
   approach?: string
+  outcomeHeading?: string
   outcome?: string
   sections: ProjectSection[]
   contentBlocks?: ContentBlock[]
