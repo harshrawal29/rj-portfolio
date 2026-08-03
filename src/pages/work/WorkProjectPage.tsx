@@ -330,7 +330,6 @@ export function Component() {
   }
 
   /* ─── Narrative Data ─────────────────────────────────────── */
-  const hasNarrative = project.challenge || project.approach || project.outcome
   const hasContentBlocks = project.contentBlocks && project.contentBlocks.length > 0
   const hasLegacySections = project.sections?.some((s) => s.assets.length > 0) || false
 
