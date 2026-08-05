@@ -50,8 +50,7 @@ export function useLenisScroll() {
     return () => {
       window.cancelAnimationFrame(frameId)
       document.removeEventListener('click', onAnchorClick)
-      // @ts-expect-error - TS doesn't know about lenis on window
-      delete window.lenis
+      delete (window as any).lenis
       lenis.destroy()
     }
   }, [])

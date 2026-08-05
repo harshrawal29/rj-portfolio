@@ -40,6 +40,15 @@ export const router = createBrowserRouter([
         ],
       },
       {
+        path: 'inspiration/:slug',
+        lazy: async () => {
+          const module = await import('./pages/inspiration/InspirationDetailPage')
+          return {
+            Component: module.default,
+          }
+        },
+      },
+      {
         path: '*',
         element: <NotFoundPage />,
       },
