@@ -4,19 +4,19 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { createAboutExpertiseAnimation } from '../../animations/aboutAnimations'
 import { useScrollReveal } from '../../hooks/useScrollReveal'
 
-import { Disc3, Feather, Package, Printer, AppWindowMac, Sparkles, PencilSparkles } from 'lucide-react'
+import { Package, Printer, Sparkles, PenTool, NotebookPen, Tablet, Newspaper, MonitorSmartphone } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
 
 const expertiseItems = [
   { title: 'Brand Identity', desc: 'Building identities that go further than just a logo, thoughtful and consistent work made to help a brand get noticed and remembered.', icon: Sparkles },
   { title: 'Packaging Design', desc: 'Packaging built to look right on the shelf and feel right in hand, made to leave a strong first impression that actually sticks.', icon: Package },
-  { title: 'Logo Design', desc: 'A logo is more than a symbol, it\'s the face of a brand, designed to hold up over time, stand out and mean something.', icon: Disc3 },
-  { title: 'Website Design & Development', desc: 'Websites built to look good, work well and hold up across devices, designed with the user in mind at every step.', icon: Feather },
-  { title: 'Illustration & Visual Storytelling', desc: 'Turning ideas into visuals that simplify a message, add some emotion and bring a story to life.', icon: Printer },
-  { title: 'Digital Design', desc: 'Creative work for social media, digital campaigns, thumbnails, presentations and other online formats, made to grab attention and hold onto it.', icon: AppWindowMac },
+  { title: 'Logo Design', desc: 'A logo is more than a symbol, it\'s the face of a brand, designed to hold up over time, stand out and mean something.', icon: PenTool },
+  { title: 'Website Design & Development', desc: 'Websites built to look good, work well and hold up across devices, designed with the user in mind at every step.', icon: MonitorSmartphone },
+  { title: 'Illustration & Visual Storytelling', desc: 'Turning ideas into visuals that simplify a message, add some emotion and bring a story to life.', icon: NotebookPen },
+  { title: 'Digital Design', desc: 'Creative work for social media, digital campaigns, thumbnails, presentations and other online formats, made to grab attention and hold onto it.', icon: Tablet },
   { title: 'Print Design', desc: 'Print work built to make an impact, from billboards and transit ads to brochures, posters and other marketing material.', icon: Printer },
-  { title: 'Editorial Design', desc: 'Layouts designed to bring clarity, structure and visual appeal to every page.', icon: PencilSparkles },
+  { title: 'Editorial Design', desc: 'Layouts designed to bring clarity, structure and visual appeal to every page.', icon: Newspaper },
 ]
 
 /*
@@ -101,7 +101,7 @@ function AboutExpertise() {
           {/* Heading at the top */}
           <div className="w-full max-w-7xl px-6 lg:px-10">
             <h2 className="text-[12vw] font-bold leading-[0.85] tracking-[-0.06em] text-[#111111] sm:text-[4.5rem] lg:text-[6.5rem]">
-              DESIGN SERVICES
+              DESIGN<br></br>SERVICES
             </h2>
           </div>
 

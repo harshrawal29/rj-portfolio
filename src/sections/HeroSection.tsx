@@ -203,39 +203,38 @@ function HeroSection({ loaderComplete = true }: HeroSectionProps) {
             <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
           </div>
 
-          <div className="relative z-[2] mx-auto grid w-full max-w-7xl gap-12 px-6 pb-22 pt-24 lg:grid-cols-12 lg:px-10 lg:pb-20 lg:pt-28">
-            <div className="lg:col-span-9">
+          <div className="relative z-[2] mx-auto flex w-full max-w-7xl flex-col px-6 pb-22 pt-24 lg:px-10 lg:pb-20 lg:pt-20">
+            <div className="overflow-hidden">
+              <p data-reveal className="text-xs uppercase tracking-[0.45em] text-white font-medium drop-shadow-md sm:text-sm">
+                {copy.heroEyebrow}
+              </p>
+            </div>
+
+            <div className="mt-8 flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
               <div className="overflow-hidden">
-                <p data-reveal className="text-xs uppercase tracking-[0.45em] text-white font-medium drop-shadow-md sm:text-sm">
-                  {copy.heroEyebrow}
-                </p>
+                <h1
+                  id="hero-title"
+                  data-reveal
+                  className="text-[16vw] font-semibold uppercase leading-[0.86] tracking-[-0.08em] text-white drop-shadow-xl sm:text-[6.5rem] lg:text-[8.75rem]"
+                >
+                  {copy.heroTitle}
+                </h1>
               </div>
 
-              <div className="mt-8 space-y-2 sm:space-y-4">
-                <div className="overflow-hidden">
-                  <h1
-                    id="hero-title"
-                    data-reveal
-                    className="text-[16vw] font-semibold uppercase leading-[0.86] tracking-[-0.08em] text-white drop-shadow-xl sm:text-[6.5rem] lg:text-[8.75rem]"
-                  >
-                    {copy.heroTitle}
-                  </h1>
-                </div>
-                <div className="overflow-hidden">
-                  <h2
-                    data-reveal
-                    className="text-[9vw] font-medium uppercase leading-[0.9] tracking-[-0.06em] text-white/90 drop-shadow-lg sm:text-[3.1rem]"
-                  >
-                    {copy.heroSubtitle}
-                  </h2>
-                </div>
+              <div className="flex lg:justify-end shrink-0">
+                <p data-fade className="max-w-xs text-sm leading-7 text-white font-medium drop-shadow-md sm:text-base lg:text-right">
+                  {copy.heroMeta}
+                </p>
               </div>
             </div>
 
-            <div className="flex flex-col justify-between gap-10 lg:col-span-3 lg:items-end lg:pt-8">
-              <p data-fade className="max-w-xs text-sm leading-7 text-white font-medium drop-shadow-md sm:text-base lg:text-right">
-                {copy.heroMeta}
-              </p>
+            <div className="mt-2 sm:mt-4 overflow-hidden pb-1.5">
+              <h2
+                data-reveal
+                className="text-[9vw] font-normal leading-[0.9] text-white/90 drop-shadow-lg sm:text-[2.7rem]"
+              >
+                {copy.heroSubtitle}
+              </h2>
             </div>
           </div>
         </div>

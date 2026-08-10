@@ -74,7 +74,7 @@ function MenuOverlay({
         const rect = textSpan.getBoundingClientRect()
         const xOffset = window.innerWidth / 2 - (rect.left + rect.width / 2)
         const yOffset = window.innerHeight / 2 - (rect.top + rect.height / 2)
-        
+
         // Dynamically calculate scale so it never overflows the screen width
         const maxScale = (window.innerWidth * 0.75) / rect.width
         const targetScale = Math.min(2.5, maxScale)
@@ -308,7 +308,7 @@ function MenuOverlay({
           <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-white/80 font-medium">
             <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Resume</a>
             <a href="https://behance.net/riyajethani" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Behance</a>
-            <a href="https://instagram.com/riyajethani.design" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Instagram</a>
+            <a href="https://www.instagram.com/riyaajethani?igsh=MXdpdHhxY2N1MnA1Ng%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Instagram</a>
             <a href="https://www.linkedin.com/in/riya-jethani-92420b1b3/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
           </div>
         </div>

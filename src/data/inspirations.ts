@@ -18,7 +18,7 @@ export interface Inspiration {
 }
 
 export const inspirationSettings = {
-  sectionLabel: 'Inspirations',
+  sectionLabel: 'INSPIRATIONS',
   sectionHeading: 'WHAT INSPIRES ME',
   scrollPrompt: 'Scroll To Explore \u2193'
 }

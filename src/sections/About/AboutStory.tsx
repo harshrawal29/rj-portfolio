@@ -42,14 +42,14 @@ function AboutStory() {
 
           {/* ─── Text Content (Right) ─── */}
           <div className="flex flex-col justify-center">
-            <p className="text-[0.65rem] uppercase tracking-[0.45em] text-black/45 sm:text-xs">
+            {/* <p className="text-[0.65rem] uppercase tracking-[0.45em] text-black/45 sm:text-xs">
               Emotional storytelling
-            </p>
+            </p> */}
             <h2
               id="about-story-title"
               className="mt-5 max-w-4xl text-[13vw] font-semibold leading-[0.9] tracking-[-0.08em] text-[#111111] sm:text-6xl lg:text-[5.25rem]"
             >
-              Ideas shaped by feeling, memory, and meaning.
+              ABOUT ME
             </h2>
 
             <div className="mt-8 space-y-4 sm:mt-10 sm:space-y-5">

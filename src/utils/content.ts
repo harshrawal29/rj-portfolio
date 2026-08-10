@@ -102,7 +102,7 @@ export const copy = {
   loaderTitle: 'Opening Portfolio',
   heroEyebrow: 'VISUAL COMMUNICATION DESIGNER • Mumbai, India',
   heroTitle: 'RIYA JETHANI',
-  heroSubtitle: 'VISUAL STORIES DESIGNED TO STAY WITH YOU',
+  heroSubtitle: 'Visual Stories Designed to Stay with You',
   heroMeta: 'Building work that brings people, ideas and brands together through design that\'s made with intention.',
   statementEyebrow: 'Design Philosophy',
   statementLines: ['DESIGN', 'WITH', 'FEELING'],
