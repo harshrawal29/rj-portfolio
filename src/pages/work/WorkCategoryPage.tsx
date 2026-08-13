@@ -160,13 +160,24 @@ function ProjectList({ projects, category }: { projects: ProjectSummary[]; categ
         <div className="sticky top-[25vh] h-[50vh] w-full overflow-hidden">
           {projects.map((project) => (
             <div key={project.slug} className="project-image absolute inset-0 h-full w-full">
-              {project.cover && (
+              {project.coverVideo ? (
+                <motion.video
+                  layoutId={`project-image-${project.slug}`}
+                  data-slug={project.slug}
+                  src={project.coverVideo}
+                  className="h-full w-full object-cover"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                />
+              ) : project.cover && (
                 <motion.img
                   layoutId={`project-image-${project.slug}`}
+                  data-slug={project.slug}
                   src={project.cover.startsWith('http') ? project.cover : `/projects/${project.slug}/${project.cover}`}
                   alt={project.title}
                   className="h-full w-full object-cover"
-                  loading="lazy"
                 />
               )}
             </div>

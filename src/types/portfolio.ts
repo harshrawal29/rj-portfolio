@@ -43,6 +43,7 @@ export interface ProjectSummary {
   category: CategorySlug
   year: number | string
   cover: string
+  coverVideo?: string
   summary: string
   client?: string
   services?: string[]

@@ -56,6 +56,15 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'coverVideo',
+      title: 'Cover Video (Optional)',
+      type: 'file',
+      description: 'Upload an MP4 video to be used as the cover. If provided, it will replace the cover image in supported areas.',
+      options: {
+        accept: 'video/mp4',
+      },
+    }),
+    defineField({
       name: 'summary',
       title: 'Summary (Short)',
       type: 'text',

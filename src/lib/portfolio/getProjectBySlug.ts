@@ -8,6 +8,7 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
     "category": category->slug.current,
     year,
     "cover": coverImage.asset->url,
+    "coverVideo": coverVideo.asset->url,
     summary,
     client,
     services,

@@ -309,9 +309,19 @@ function ProjectCard({ project }: { project: Project }) {
       className="project-card group relative mx-4 block aspect-[4/5] w-[42vw] max-w-[400px] overflow-hidden sm:w-[40vw] md:w-[30vw] lg:w-[25vw]"
     >
       <div className="absolute inset-0 bg-neutral-900">
-        {project.cover && (
+        {project.coverVideo ? (
+          <video
+            ref={imageRef as unknown as React.RefObject<HTMLVideoElement>}
+            src={project.coverVideo}
+            className="h-full w-full object-cover opacity-80 transition-opacity duration-500 group-hover:opacity-100"
+            autoPlay
+            loop
+            muted
+            playsInline
+          />
+        ) : project.cover && (
           <img
-            ref={imageRef}
+            ref={imageRef as unknown as React.RefObject<HTMLImageElement>}
             src={project.cover.startsWith('http') ? project.cover : `/projects/${project.slug}/${project.cover}`}
             alt={project.title}
             className="h-full w-full object-cover opacity-80 transition-opacity duration-500 group-hover:opacity-100"

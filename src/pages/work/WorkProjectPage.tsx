@@ -92,7 +92,7 @@ function LegacySectionBlock({ section, projectSlug }: { section: ProjectSection;
     return () => ctx.revert()
   }, [section])
 
-  if (section.assets.length === 0) return null
+  if (!section.assets || section.assets.length === 0) return null
 
   const isVideo = section.type === 'video'
   const isSingle = section.assets.length === 1
@@ -331,22 +331,35 @@ export function Component() {
 
   /* ─── Narrative Data ─────────────────────────────────────── */
   const hasContentBlocks = project.contentBlocks && project.contentBlocks.length > 0
-  const hasLegacySections = project.sections?.some((s) => s.assets.length > 0) || false
+  const hasLegacySections = project.sections?.some((s) => s.assets?.length > 0) || false
 
   return (
     <div className="case-study" ref={pageRef}>
 
       {/* ── HERO ────────────────────────────────────────────── */}
       <header ref={heroRef} className="case-study__hero">
-        {project.cover && (
+        {(project.coverVideo || project.cover) && (
           <div className="case-study__hero-bg">
-            <img
-              data-project-hero
-              ref={imageRef}
-              src={project.cover.startsWith('http') ? project.cover : `/projects/${project.slug}/${project.cover}`}
-              alt={project.title}
-              className="case-study__hero-img"
-            />
+            {project.coverVideo ? (
+              <video
+                data-project-hero
+                ref={imageRef as unknown as React.RefObject<HTMLVideoElement>}
+                src={project.coverVideo}
+                className="case-study__hero-img"
+                autoPlay
+                loop
+                muted
+                playsInline
+              />
+            ) : (
+              <img
+                data-project-hero
+                ref={imageRef as unknown as React.RefObject<HTMLImageElement>}
+                src={project.cover.startsWith('http') ? project.cover : `/projects/${project.slug}/${project.cover}`}
+                alt={project.title}
+                className="case-study__hero-img"
+              />
+            )}
             <div className="case-study__hero-overlay" />
           </div>
         )}
@@ -386,7 +399,7 @@ export function Component() {
       {/* ── LEGACY SECTIONS (backward-compatible) ───────────── */}
       {hasLegacySections && (
         <div className="case-study__legacy-sections">
-          {project.sections?.filter((s) => s.assets.length > 0)
+          {project.sections?.filter((s) => s.assets?.length > 0)
             .map((section) => (
               <LegacySectionBlock key={section.type} section={section} projectSlug={project.slug} />
             ))}
