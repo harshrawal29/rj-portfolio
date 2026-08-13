@@ -3,7 +3,7 @@ import imageUrlBuilder from '@sanity/image-url'
 
 // Sanity config
 export const sanityClient = createClient({
-  projectId: '6q2688g4',
+  projectId: 'sn0k73pc',
   dataset: 'production',
   useCdn: false, // set to `false` to bypass the edge cache
   apiVersion: '2024-01-01', // use current date (YYYY-MM-DD) to target the latest API version

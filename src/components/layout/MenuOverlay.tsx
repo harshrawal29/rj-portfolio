@@ -1,4 +1,4 @@
-import { motion, useMotionValue, useSpring, AnimatePresence } from 'framer-motion'
+import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { useMemo, useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { fullscreenMenuItems } from '../../utils/content'
@@ -167,21 +167,8 @@ function MenuOverlay({
         cursorOpacity.set(0)
       }}
     >
-      {/* Background Images */}
+      {/* Background Overlay */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
-        <AnimatePresence mode="wait">
-          {isOpen && (
-            <motion.img
-              key={activeItem.bgImage}
-              src={activeItem.bgImage}
-              alt=""
-              initial={{ opacity: 0, scale: 1.1, filter: 'blur(20px)' }}
-              animate={{ opacity: 1, scale: 1, filter: 'blur(2px)', transition: { duration: 0.8, ease: 'easeOut' } }}
-              exit={{ opacity: 0, scale: 0.95, filter: 'blur(20px)', transition: { duration: 0.4, ease: 'easeIn' } }}
-              className="absolute inset-0 h-full w-full object-cover mix-blend-lighten"
-            />
-          )}
-        </AnimatePresence>
         <div className="absolute inset-0 bg-black/40" />
         <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
       </div>
@@ -248,15 +235,17 @@ function MenuOverlay({
                         style={{ translateY: '-50%' }}
                       />
                       <motion.span
-                        className="menu-item-text text-[clamp(2.75rem,7vw,7.5rem)] font-medium leading-[0.88] tracking-[-0.08em] text-white 2xl:text-[clamp(3rem,7vw,8.5rem)] origin-center"
                         animate={{
                           x: activeIndex === index && !isNavigating ? 18 : 0,
                           scale: activeIndex === index && !isNavigating ? 1.05 : 1,
-                          opacity: (activeHref === item.href || activeIndex === index) ? 1 : 0.5,
+                          opacity: activeIndex === index ? 1 : 0.35,
                         }}
                         transition={{ duration: 0.45, ease: 'easeOut' }}
+                        className="flex origin-center"
                       >
-                        {item.label}
+                        <span className="menu-item-text block px-4 -ml-4 py-2 -my-2 text-[clamp(2.75rem,7vw,7.5rem)] font-thin leading-[0.88] tracking-[-0.08em] bg-gradient-to-r from-[#FF8E53] via-[#F5749E] to-[#9C7AF2] bg-clip-text text-transparent 2xl:text-[clamp(3rem,7vw,8.5rem)] origin-center">
+                          {item.label}
+                        </span>
                       </motion.span>
                     </div>
                   </a>
@@ -291,7 +280,12 @@ function MenuOverlay({
                   <p className="text-sm uppercase tracking-[0.28em] text-white/45">
                     Preview
                   </p>
-                  <h3 className="mt-4 max-w-sm text-4xl font-medium uppercase leading-[0.95] tracking-[-0.06em] text-white">
+                  <h3 
+                    className="mt-5 max-w-sm px-4 -mx-4 py-2 -my-2 text-3xl sm:text-4xl font-serif font-light italic leading-[1.1] tracking-tight text-transparent bg-clip-text"
+                    style={{
+                      backgroundImage: `linear-gradient(135deg, ${activeItem.accent} 0%, rgba(255,255,255,0.9) 100%)`
+                    }}
+                  >
                     {activeItem.preview.title}
                   </h3>
                   <p className="mt-6 max-w-sm text-base leading-7 text-white/65">
