@@ -47,22 +47,14 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'coverImage',
-      title: 'Cover Image',
-      type: 'image',
+      name: 'cover',
+      title: 'Cover Media',
+      type: 'file',
+      description: 'Upload an image, GIF, or MP4 video for the project cover.',
       options: {
-        hotspot: true,
+        accept: 'image/*,video/mp4',
       },
       validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: 'coverVideo',
-      title: 'Cover Video (Optional)',
-      type: 'file',
-      description: 'Upload an MP4 video to be used as the cover. If provided, it will replace the cover image in supported areas.',
-      options: {
-        accept: 'video/mp4',
-      },
     }),
     defineField({
       name: 'summary',
@@ -71,9 +63,21 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'clientHeading',
+      title: 'Client Heading',
+      type: 'string',
+      description: 'Override the "Client" label in the metadata section',
+    }),
+    defineField({
       name: 'client',
       title: 'Client',
       type: 'string',
+    }),
+    defineField({
+      name: 'servicesHeading',
+      title: 'Services Heading',
+      type: 'string',
+      description: 'Override the "Services" label in the metadata section',
     }),
     defineField({
       name: 'services',
@@ -92,8 +96,13 @@ export default defineType({
       name: 'order',
       title: 'Order',
       type: 'number',
-      initialValue: 0,
+      description: 'Used to sort projects. Lower numbers appear first.',
       validation: (rule) => rule.required(),
+      initialValue: async (_, context) => {
+        const client = context.getClient({apiVersion: '2024-01-01'})
+        const count = await client.fetch(`count(*[_type == "project" && !(_id in path("drafts.**"))])`)
+        return count + 1
+      },
     }),
     
     // Detailed Content
@@ -144,39 +153,6 @@ export default defineType({
       fieldset: 'narrative',
     }),
 
-    // Old sections format
-    defineField({
-      name: 'sections',
-      title: 'Sections',
-      type: 'array',
-      of: [
-        {
-          type: 'object',
-          name: 'section',
-          fields: [
-            defineField({name: 'type', type: 'string', title: 'Type'}),
-            defineField({name: 'title', type: 'string', title: 'Title'}),
-            defineField({
-              name: 'assets',
-              title: 'Assets',
-              type: 'array',
-              of: [
-                {
-                  type: 'object',
-                  name: 'asset',
-                  fields: [
-                    defineField({name: 'image', type: 'image', title: 'Image', options: {hotspot: true}}),
-                    defineField({name: 'alt', type: 'string', title: 'Alt text'}),
-                    defineField({name: 'span', type: 'string', title: 'Span', options: {list: ['full', 'half']}}),
-                  ]
-                }
-              ]
-            })
-          ]
-        }
-      ]
-    }),
-
     // Flexible Content Blocks
     defineField({
       name: 'contentBlocks',
@@ -200,7 +176,7 @@ export default defineType({
     select: {
       title: 'title',
       category: 'category.title',
-      media: 'coverImage',
+      media: 'cover',
     },
     prepare(selection) {
       const {title, category, media} = selection

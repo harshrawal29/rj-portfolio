@@ -22,19 +22,7 @@ export type ProjectSectionType = (typeof PROJECT_SECTION_TYPES)[number]
 export interface Category {
   title: string
   slug: CategorySlug
-  description: string
-  coverImage: string
   order: number
-}
-
-export interface ProjectSection {
-  type: ProjectSectionType
-  title?: string
-  assets: Array<{
-    filename: string
-    alt?: string
-    span?: 'full' | 'half'
-  }>
 }
 
 export interface ProjectSummary {
@@ -43,9 +31,10 @@ export interface ProjectSummary {
   category: CategorySlug
   year: number | string
   cover: string
-  coverVideo?: string
   summary: string
+  clientHeading?: string
   client?: string
+  servicesHeading?: string
   services?: string[]
   eyebrow?: string
   order: number
@@ -59,7 +48,6 @@ export interface Project extends ProjectSummary {
   approach?: string
   outcomeHeading?: string
   outcome?: string
-  sections: ProjectSection[]
   contentBlocks?: ContentBlock[]
 }
 

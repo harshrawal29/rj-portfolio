@@ -21,27 +21,18 @@ export default defineType({
       },
       validation: (rule) => rule.required(),
     }),
-    defineField({
-      name: 'description',
-      title: 'Description',
-      type: 'text',
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: 'coverImage',
-      title: 'Cover Image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-      validation: (rule) => rule.required(),
-    }),
+
     defineField({
       name: 'order',
       title: 'Order',
       type: 'number',
       description: 'Used to sort categories. Lower numbers appear first.',
       validation: (rule) => rule.required(),
+      initialValue: async (_, context) => {
+        const client = context.getClient({apiVersion: '2024-01-01'})
+        const count = await client.fetch(`count(*[_type == "category" && !(_id in path("drafts.**"))])`)
+        return count + 1
+      },
     }),
   ],
 })

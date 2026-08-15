@@ -5,8 +5,6 @@ export async function getCategories(): Promise<Category[]> {
   const query = `*[_type == "category"] | order(order asc) {
     title,
     "slug": slug.current,
-    description,
-    "coverImage": coverImage.asset->url,
     order
   }`
   

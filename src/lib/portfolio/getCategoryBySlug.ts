@@ -5,8 +5,6 @@ export async function getCategoryBySlug(slug: string): Promise<Category | null> 
   const query = `*[_type == "category" && slug.current == $slug][0] {
     title,
     "slug": slug.current,
-    description,
-    "coverImage": coverImage.asset->url,
     order
   }`
   

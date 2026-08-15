@@ -160,11 +160,11 @@ function ProjectList({ projects, category }: { projects: ProjectSummary[]; categ
         <div className="sticky top-[25vh] h-[50vh] w-full overflow-hidden">
           {projects.map((project) => (
             <div key={project.slug} className="project-image absolute inset-0 h-full w-full">
-              {project.coverVideo ? (
+              {project.cover && (project.cover.endsWith('.mp4') || project.cover.endsWith('.webm')) ? (
                 <motion.video
                   layoutId={`project-image-${project.slug}`}
                   data-slug={project.slug}
-                  src={project.coverVideo}
+                  src={project.cover}
                   className="h-full w-full object-cover"
                   autoPlay
                   loop
@@ -252,9 +252,7 @@ export function Component() {
             <h1 className="mt-6 text-[clamp(3.5rem,10vw,8rem)] font-medium uppercase leading-[0.85] tracking-[-0.05em] text-white">
               {category.title}
             </h1>
-            <p className="mt-10 max-w-2xl text-base leading-relaxed text-neutral-400 sm:text-lg">
-              {category.description}
-            </p>
+
           </header>
         </motion.div>
 

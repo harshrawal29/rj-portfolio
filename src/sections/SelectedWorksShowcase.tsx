@@ -309,10 +309,10 @@ function ProjectCard({ project }: { project: Project }) {
       className="project-card group relative mx-4 block aspect-[4/5] w-[42vw] max-w-[400px] overflow-hidden sm:w-[40vw] md:w-[30vw] lg:w-[25vw]"
     >
       <div className="absolute inset-0 bg-neutral-900">
-        {project.coverVideo ? (
+        {project.cover && (project.cover.endsWith('.mp4') || project.cover.endsWith('.webm')) ? (
           <video
             ref={imageRef as unknown as React.RefObject<HTMLVideoElement>}
-            src={project.coverVideo}
+            src={project.cover}
             className="h-full w-full object-cover opacity-80 transition-opacity duration-500 group-hover:opacity-100"
             autoPlay
             loop

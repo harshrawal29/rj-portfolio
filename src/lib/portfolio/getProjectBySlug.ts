@@ -7,10 +7,11 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
     "slug": slug.current,
     "category": category->slug.current,
     year,
-    "cover": coverImage.asset->url,
-    "coverVideo": coverVideo.asset->url,
+    "cover": cover.asset->url,
     summary,
+    clientHeading,
     client,
+    servicesHeading,
     services,
     eyebrow,
     order,
@@ -21,13 +22,7 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
     approach,
     outcomeHeading,
     outcome,
-    sections[] {
-      ...,
-      assets[] {
-        ...,
-        "filename": image.asset->url
-      }
-    },
+
     contentBlocks[] {
       ...,
       _type == 'fullImageBlock' => {

@@ -7,10 +7,11 @@ export async function getProjects(): Promise<ProjectSummary[]> {
     "slug": slug.current,
     "category": category->slug.current,
     year,
-    "cover": coverImage.asset->url,
-    "coverVideo": coverVideo.asset->url,
+    "cover": cover.asset->url,
     summary,
+    clientHeading,
     client,
+    servicesHeading,
     services,
     eyebrow,
     order

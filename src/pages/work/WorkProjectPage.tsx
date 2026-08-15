@@ -8,10 +8,9 @@ import { getCategoryBySlug } from '../../lib/portfolio/getCategoryBySlug'
 import { getProjectBySlug } from '../../lib/portfolio/getProjectBySlug'
 import { getProjectsByCategory } from '../../lib/portfolio/getProjectsByCategory'
 import { notFound } from '../../lib/portfolio/notFound'
-import { projectSectionPath } from '../../lib/portfolio/paths'
 import ContentBlockRenderer from '../../components/project-sections/ContentBlockRenderer'
 import EditorialProjectStory from '../../components/project-sections/EditorialProjectStory'
-import type { Category, Project, ProjectSummary, ProjectSection } from '../../types/portfolio'
+import type { Category, Project, ProjectSummary } from '../../types/portfolio'
 import './editorial-blocks.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -57,106 +56,6 @@ export async function loader({ params }: LoaderFunctionArgs): Promise<WorkProjec
   }
 
   return { category, project, nextProject }
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   LEGACY SECTION BLOCK (backward-compatible)
-   ═══════════════════════════════════════════════════════════════ */
-
-function LegacySectionBlock({ section, projectSlug }: { section: ProjectSection; projectSlug: string }) {
-  const sectionRef = useRef<HTMLElement>(null)
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const images = sectionRef.current?.querySelectorAll('.legacy-img')
-      if (images?.length) {
-        gsap.fromTo(
-          images,
-          { y: 60, opacity: 0, scale: 1.03 },
-          {
-            y: 0,
-            opacity: 1,
-            scale: 1,
-            duration: 1,
-            stagger: 0.2,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: 'top 85%',
-              toggleActions: 'play none none none',
-            },
-          }
-        )
-      }
-    }, sectionRef)
-    return () => ctx.revert()
-  }, [section])
-
-  if (!section.assets || section.assets.length === 0) return null
-
-  const isVideo = section.type === 'video'
-  const isSingle = section.assets.length === 1
-  const isGrid3 = section.assets.length >= 3
-
-  return (
-    <section ref={sectionRef}>
-
-      {isSingle && !isVideo ? (
-        <div className="editorial-full-image">
-          <div className="editorial-full-image__wrapper">
-            <img
-              className="legacy-img"
-              src={projectSectionPath(projectSlug, section.type, section.assets[0].filename)}
-              alt={section.assets[0].alt ?? section.assets[0].filename}
-              loading="lazy"
-            />
-          </div>
-        </div>
-      ) : isVideo ? (
-        <div style={{ width: '100%', padding: '0 16px', maxWidth: '1400px', margin: '0 auto', overflow: 'hidden' }}>
-          {section.assets.map((asset) => (
-            <video
-              key={asset.filename}
-              className="legacy-img"
-              src={projectSectionPath(projectSlug, section.type, asset.filename)}
-              controls
-              autoPlay
-              muted
-              loop
-              playsInline
-              style={{ width: '100%', display: 'block' }}
-            />
-          ))}
-        </div>
-      ) : isGrid3 ? (
-        <div className="editorial-g3">
-          {section.assets.map((asset) => (
-            <div key={asset.filename} className="editorial-g3__item">
-              <img
-                className="legacy-img"
-                src={projectSectionPath(projectSlug, section.type, asset.filename)}
-                alt={asset.alt ?? asset.filename}
-                loading="lazy"
-              />
-            </div>
-          ))}
-        </div>
-      ) : (
-        <div className="editorial-g2">
-          {section.assets.map((asset) => (
-            <div key={asset.filename} className="editorial-g2__item">
-              <img
-                className="legacy-img"
-                src={projectSectionPath(projectSlug, section.type, asset.filename)}
-                alt={asset.alt ?? asset.filename}
-                loading="lazy"
-              />
-            </div>
-          ))}
-        </div>
-      )}
-    </section>
-  )
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -331,20 +230,19 @@ export function Component() {
 
   /* ─── Narrative Data ─────────────────────────────────────── */
   const hasContentBlocks = project.contentBlocks && project.contentBlocks.length > 0
-  const hasLegacySections = project.sections?.some((s) => s.assets?.length > 0) || false
 
   return (
     <div className="case-study" ref={pageRef}>
 
       {/* ── HERO ────────────────────────────────────────────── */}
       <header ref={heroRef} className="case-study__hero">
-        {(project.coverVideo || project.cover) && (
+        {project.cover && (
           <div className="case-study__hero-bg">
-            {project.coverVideo ? (
+            {project.cover.endsWith('.mp4') || project.cover.endsWith('.webm') ? (
               <video
                 data-project-hero
                 ref={imageRef as unknown as React.RefObject<HTMLVideoElement>}
-                src={project.coverVideo}
+                src={project.cover}
                 className="case-study__hero-img"
                 autoPlay
                 loop
@@ -395,17 +293,6 @@ export function Component() {
           ))}
         </div>
       )}
-
-      {/* ── LEGACY SECTIONS (backward-compatible) ───────────── */}
-      {hasLegacySections && (
-        <div className="case-study__legacy-sections">
-          {project.sections?.filter((s) => s.assets?.length > 0)
-            .map((section) => (
-              <LegacySectionBlock key={section.type} section={section} projectSlug={project.slug} />
-            ))}
-        </div>
-      )}
-
 
 
       {/* ── NEXT PROJECT ────────────────────────────────────── */}
