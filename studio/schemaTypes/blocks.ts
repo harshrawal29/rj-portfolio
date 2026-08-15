@@ -47,25 +47,80 @@ export const imageTextBlock = defineType({
           {title: 'Text on Left, Image on Right', value: 'text-image'},
           {title: 'Image on Left, Text on Right', value: 'image-text'},
           {title: 'Text only (Two Columns)', value: 'text-text'},
+          {title: 'Media only (Two Columns)', value: 'image-image'},
         ],
       },
       initialValue: 'text-image',
     }),
-    defineField({name: 'image', title: 'Image', type: 'image', options: {hotspot: true}}),
-    defineField({name: 'alt', title: 'Alt Text', type: 'string'}),
-    defineField({name: 'label', title: 'Left Label (Eyebrow)', type: 'string'}),
-    defineField({name: 'heading', title: 'Left Heading', type: 'string'}),
-    defineField({name: 'body', title: 'Left Body', type: 'text'}),
+    defineField({
+      name: 'media', 
+      title: 'Left Media (Image/GIF/Video)', 
+      type: 'file', 
+      options: { accept: 'image/*,video/*' },
+      hidden: ({ parent }) => parent?.variant === 'text-text'
+    }),
+    defineField({
+      name: 'alt', 
+      title: 'Left Alt Text', 
+      type: 'string',
+      hidden: ({ parent }) => parent?.variant === 'text-text'
+    }),
+    defineField({
+      name: 'mediaRight', 
+      title: 'Right Media (Image/GIF/Video)', 
+      type: 'file', 
+      options: { accept: 'image/*,video/*' },
+      hidden: ({ parent }) => parent?.variant !== 'image-image'
+    }),
+    defineField({
+      name: 'altRight', 
+      title: 'Right Alt Text', 
+      type: 'string',
+      hidden: ({ parent }) => parent?.variant !== 'image-image'
+    }),
+    defineField({
+      name: 'label', 
+      title: 'Left Label (Eyebrow)', 
+      type: 'string',
+      hidden: ({ parent }) => parent?.variant === 'image-image'
+    }),
+    defineField({
+      name: 'heading', 
+      title: 'Left Heading', 
+      type: 'string',
+      hidden: ({ parent }) => parent?.variant === 'image-image'
+    }),
+    defineField({
+      name: 'body', 
+      title: 'Left Body', 
+      type: 'text',
+      hidden: ({ parent }) => parent?.variant === 'image-image'
+    }),
     
     // For text-text variant
-    defineField({name: 'labelRight', title: 'Right Label', type: 'string'}),
-    defineField({name: 'headingRight', title: 'Right Heading', type: 'string'}),
-    defineField({name: 'bodyRight', title: 'Right Body', type: 'text'}),
+    defineField({
+      name: 'labelRight', 
+      title: 'Right Label', 
+      type: 'string',
+      hidden: ({ parent }) => parent?.variant !== 'text-text'
+    }),
+    defineField({
+      name: 'headingRight', 
+      title: 'Right Heading', 
+      type: 'string',
+      hidden: ({ parent }) => parent?.variant !== 'text-text'
+    }),
+    defineField({
+      name: 'bodyRight', 
+      title: 'Right Body', 
+      type: 'text',
+      hidden: ({ parent }) => parent?.variant !== 'text-text'
+    }),
   ],
   preview: {
     select: {
       title: 'heading',
-      media: 'image',
+      media: 'media',
     },
     prepare({title, media}) {
       return {

@@ -12,7 +12,7 @@ export default function ImageTextBlock({ block, index }: { block: ImageTextBlock
   useEffect(() => {
     const ctx = gsap.context(() => {
       const textEls = ref.current?.querySelectorAll('.editorial-it__text-inner > *')
-      const imgEl = ref.current?.querySelector('.editorial-it__img')
+      const imgEls = ref.current?.querySelectorAll('.editorial-it__media')
 
       if (textEls?.length) {
         gsap.fromTo(
@@ -33,14 +33,15 @@ export default function ImageTextBlock({ block, index }: { block: ImageTextBlock
         )
       }
 
-      if (imgEl) {
+      if (imgEls?.length) {
         gsap.fromTo(
-          imgEl,
+          imgEls,
           { scale: 1.05, opacity: 0 },
           {
             scale: 1,
             opacity: 1,
             duration: 1.2,
+            stagger: 0.15,
             ease: 'power3.out',
             scrollTrigger: {
               trigger: ref.current,
@@ -85,6 +86,57 @@ export default function ImageTextBlock({ block, index }: { block: ImageTextBlock
     )
   }
 
+  if (variant === 'image-image') {
+    return (
+      <div ref={ref} className="editorial-it editorial-it--text-text" style={{ padding: '80px 16px', alignItems: 'center' }}>
+        <div className="editorial-it__image" style={{ width: '100%', flex: 1 }}>
+          {block.src && (
+            block.src.endsWith('.mp4') || block.src.endsWith('.webm') ? (
+              <video
+                className="editorial-it__media"
+                src={block.src}
+                autoPlay
+                muted
+                loop
+                playsInline
+                style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover' }}
+              />
+            ) : (
+              <img
+                className="editorial-it__media"
+                src={block.src}
+                alt={block.alt ?? ''}
+                loading="lazy"
+              />
+            )
+          )}
+        </div>
+        <div className="editorial-it__image" style={{ width: '100%', flex: 1 }}>
+          {block.mediaRight && (
+            block.mediaRight.endsWith('.mp4') || block.mediaRight.endsWith('.webm') ? (
+              <video
+                className="editorial-it__media"
+                src={block.mediaRight}
+                autoPlay
+                muted
+                loop
+                playsInline
+                style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover' }}
+              />
+            ) : (
+              <img
+                className="editorial-it__media"
+                src={block.mediaRight}
+                alt={block.altRight ?? ''}
+                loading="lazy"
+              />
+            )
+          )}
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div
       ref={ref}
@@ -102,12 +154,24 @@ export default function ImageTextBlock({ block, index }: { block: ImageTextBlock
       </div>
       <div className="editorial-it__image">
         {block.src && (
-          <img
-            className="editorial-it__img"
-            src={block.src}
-            alt={block.alt ?? ''}
-            loading="lazy"
-          />
+          block.src.endsWith('.mp4') || block.src.endsWith('.webm') ? (
+            <video
+              className="editorial-it__media"
+              src={block.src}
+              autoPlay
+              muted
+              loop
+              playsInline
+              style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover' }}
+            />
+          ) : (
+            <img
+              className="editorial-it__media"
+              src={block.src}
+              alt={block.alt ?? ''}
+              loading="lazy"
+            />
+          )
         )}
       </div>
     </div>

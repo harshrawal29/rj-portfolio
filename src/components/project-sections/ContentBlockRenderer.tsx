@@ -34,6 +34,9 @@ export default function ContentBlockRenderer({
   if ('poster' in resolvedBlock && typeof resolvedBlock.poster === 'string') {
     resolvedBlock.poster = resolve(resolvedBlock.poster)
   }
+  if ('mediaRight' in resolvedBlock && typeof resolvedBlock.mediaRight === 'string') {
+    resolvedBlock.mediaRight = resolve(resolvedBlock.mediaRight)
+  }
   if ('images' in resolvedBlock && Array.isArray(resolvedBlock.images)) {
     resolvedBlock.images = resolvedBlock.images.map(img => ({ ...img, src: resolve(img.src) }))
   }

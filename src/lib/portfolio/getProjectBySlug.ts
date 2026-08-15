@@ -29,7 +29,8 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
         "image": image.asset->url
       },
       _type == 'imageTextBlock' => {
-        "image": image.asset->url
+        "image": media.asset->url,
+        "mediaRight": mediaRight.asset->url
       },
       _type == 'comparisonBlock' => {
         "beforeImage": beforeImage.asset->url,

@@ -76,9 +76,11 @@ export interface FullImageBlock extends BaseContentBlock {
 
 export interface ImageTextBlock extends BaseContentBlock {
   type: 'image-text'
-  variant?: 'text-image' | 'image-text' | 'text-text'
+  variant?: 'text-image' | 'image-text' | 'text-text' | 'image-image'
   src?: string
   alt?: string
+  mediaRight?: string
+  altRight?: string
   label?: string
   heading: string
   body: string
