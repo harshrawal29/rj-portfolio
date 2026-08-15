@@ -56,10 +56,6 @@ export default function ComparisonBlock({ block }: { block: ComparisonBlockType 
 
   return (
     <div ref={ref} className="editorial-comparison">
-      <div className="editorial-comparison__labels">
-        <span className="editorial-comparison__label">{block.beforeLabel ?? 'Before'}</span>
-        <span className="editorial-comparison__label">{block.afterLabel ?? 'After'}</span>
-      </div>
       <div
         ref={containerRef}
         className="editorial-comparison__container"
@@ -67,6 +63,11 @@ export default function ComparisonBlock({ block }: { block: ComparisonBlockType 
         onTouchMove={handleMove}
         style={{ cursor: 'ew-resize' }}
       >
+        {/* Floating Labels */}
+        <div className="editorial-comparison__labels-overlay">
+          <span className="editorial-comparison__label-pill editorial-comparison__label-pill--left">{block.beforeLabel ?? 'Before'}</span>
+          <span className="editorial-comparison__label-pill editorial-comparison__label-pill--right">{block.afterLabel ?? 'After'}</span>
+        </div>
         {/* After image (full width background) */}
         <img
           src={block.after}

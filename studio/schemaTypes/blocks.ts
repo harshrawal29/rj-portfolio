@@ -260,6 +260,7 @@ export const videoBlock = defineType({
   fields: [
     backgroundColorField,
     defineField({name: 'url', title: 'Video URL (mp4 or Youtube/Vimeo)', type: 'url'}),
+    defineField({name: 'videoFile', title: 'Video File Upload (.mp4, .webm)', type: 'file', options: {accept: 'video/*'}}),
     defineField({name: 'poster', title: 'Poster Image', type: 'image', options: {hotspot: true}}),
     defineField({name: 'autoPlay', title: 'Autoplay', type: 'boolean', initialValue: true}),
   ],

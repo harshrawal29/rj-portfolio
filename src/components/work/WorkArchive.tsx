@@ -186,10 +186,13 @@ function WorkArchive({ categories, projects }: WorkArchiveProps) {
                         key={p.slug}
                         href={`/work/${p.slug}`}
                         onClick={(e) => handleCategoryClick(e, `/work/${p.slug}`)}
-                        className={`project-item text-[clamp(1.5rem,4vw,3rem)] font-medium uppercase mb-4 text-center leading-tight tracking-tight drop-shadow-sm hover:opacity-50 transition-opacity pointer-events-auto`}
+                        className={`project-item group flex items-center justify-center gap-4 text-[clamp(1.5rem,4vw,3rem)] font-medium uppercase mb-4 text-center leading-tight tracking-tight drop-shadow-sm transition-all duration-300 hover:scale-105 hover:opacity-70 pointer-events-auto`}
                         style={{ color: isDark ? '#ffffff' : '#111111' }}
                       >
-                        {p.title}
+                        <span>{p.title}</span>
+                        <span className="opacity-0 -translate-x-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">
+                          ↗
+                        </span>
                       </a>
                     ))}
                   </div>

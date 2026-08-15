@@ -53,7 +53,8 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
         }
       },
       _type == 'videoBlock' => {
-        "poster": poster.asset->url
+        "poster": poster.asset->url,
+        "videoFile": videoFile.asset->url
       },
       _type == 'horizontalScrollBlock' => {
         images[] {
@@ -90,25 +91,25 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
           return { type, src: rest.image, ...rest }
         }
         if (type === 'gallery-2') {
-          return { type, images: [{src: rest.image1, alt: rest.alt1}, {src: rest.image2, alt: rest.alt2}], ...rest }
+          return { type, ...rest, images: [{src: rest.image1, alt: rest.alt1}, {src: rest.image2, alt: rest.alt2}] }
         }
         if (type === 'gallery-3') {
            const images = rest.images?.map((img: any) => ({ ...img, src: img.image })) || []
-           return { type, images, ...rest }
+           return { type, ...rest, images }
         }
         if (type === 'comparison') {
-           return { type, before: rest.beforeImage, after: rest.afterImage, ...rest }
+           return { type, ...rest, before: rest.beforeImage, after: rest.afterImage }
         }
         if (type === 'slider') {
            const slides = rest.slides?.map((s: any) => ({ ...s, src: s.image })) || []
-           return { type, slides, ...rest }
+           return { type, ...rest, slides }
         }
         if (type === 'horizontal-scroll') {
            const images = rest.images?.map((img: any) => ({ ...img, src: img.image })) || []
-           return { type, images, ...rest }
+           return { type, ...rest, images }
         }
         if (type === 'video') {
-           return { type, src: rest.url, ...rest }
+           return { type, ...rest, src: rest.videoFile || rest.url, poster: rest.poster }
         }
         
         return { type, ...rest }

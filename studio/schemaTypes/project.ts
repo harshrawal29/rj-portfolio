@@ -1,4 +1,5 @@
 import {defineField, defineType} from 'sanity'
+import React from 'react'
 
 export default defineType({
   name: 'project',
@@ -176,10 +177,27 @@ export default defineType({
     select: {
       title: 'title',
       category: 'category.title',
-      media: 'cover',
+      mediaUrl: 'cover.asset.url',
     },
     prepare(selection) {
-      const {title, category, media} = selection
+      const {title, category, mediaUrl} = selection
+      let media
+      
+      if (mediaUrl) {
+         if (mediaUrl.match(/\.(jpg|jpeg|png|gif|webp)$/i)) {
+            media = React.createElement('img', { 
+               src: mediaUrl, 
+               style: { objectFit: 'cover', width: '100%', height: '100%' } 
+            })
+         } else if (mediaUrl.match(/\.(mp4|webm)$/i)) {
+            media = React.createElement('video', { 
+               src: mediaUrl, 
+               muted: true,
+               style: { objectFit: 'cover', width: '100%', height: '100%' } 
+            })
+         }
+      }
+      
       return {
         title,
         subtitle: category ? `Category: ${category}` : 'No category set',
