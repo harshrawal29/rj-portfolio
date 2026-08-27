@@ -5,9 +5,40 @@ import type { ImageTextBlock as ImageTextBlockType } from '../../types/portfolio
 
 gsap.registerPlugin(ScrollTrigger)
 
+function isVideo(url?: unknown): boolean {
+  if (!url || typeof url !== 'string') return false
+  const cleanUrl = url.split('?')[0].toLowerCase()
+  return (
+    cleanUrl.endsWith('.mp4') ||
+    cleanUrl.endsWith('.webm') ||
+    cleanUrl.endsWith('.mov') ||
+    cleanUrl.endsWith('.ogg') ||
+    cleanUrl.includes('/videos/') ||
+    url.includes('video/mp4') ||
+    url.includes('video/webm')
+  )
+}
+
+function getMediaUrl(val: unknown): string {
+  if (!val) return ''
+  if (typeof val === 'string') return val
+  if (typeof val === 'object' && val !== null) {
+    if ('asset' in val && typeof (val as any).asset?.url === 'string') {
+      return (val as any).asset.url
+    }
+    if ('url' in val && typeof (val as any).url === 'string') {
+      return (val as any).url
+    }
+  }
+  return ''
+}
+
 export default function ImageTextBlock({ block, index }: { block: ImageTextBlockType; index: number }) {
   const ref = useRef<HTMLDivElement>(null)
   const variant = block.variant ?? (index % 2 === 0 ? 'text-image' : 'image-text')
+
+  const leftMediaSrc = getMediaUrl(block.src || (block as any).media)
+  const rightMediaSrc = getMediaUrl(block.mediaRight)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -55,16 +86,28 @@ export default function ImageTextBlock({ block, index }: { block: ImageTextBlock
     return () => ctx.revert()
   }, [])
 
+  const labelStyle = block.textColor ? { color: block.textColor, opacity: 0.6 } : undefined
+  const headingStyle = block.textColor ? { color: block.textColor } : undefined
+  const bodyStyle = block.textColor ? { color: block.textColor, opacity: 0.85 } : undefined
+
   if (variant === 'text-text') {
     return (
       <div ref={ref} className="editorial-it editorial-it--text-text" style={{ padding: '80px 16px', alignItems: 'start' }}>
         <div className="editorial-it__text">
           <div className="editorial-it__text-inner">
-            {block.label && <span className="editorial-it__label">{block.label}</span>}
-            {block.heading && <h3 className="editorial-it__heading" style={{ margin: 0, marginBottom: block.body ? '20px' : '0' }}>{block.heading}</h3>}
+            {block.label && <span className="editorial-it__label" style={labelStyle}>{block.label}</span>}
+            {block.heading && (
+              <h3
+                className="editorial-it__heading"
+                style={{ margin: 0, marginBottom: block.body ? '20px' : '0', ...(headingStyle || {}) }}
+              >
+                {block.heading}
+              </h3>
+            )}
             {block.body && (
               <p
                 className="editorial-it__body"
+                style={bodyStyle}
                 dangerouslySetInnerHTML={{ __html: block.body }}
               />
             )}
@@ -72,11 +115,19 @@ export default function ImageTextBlock({ block, index }: { block: ImageTextBlock
         </div>
         <div className="editorial-it__text">
           <div className="editorial-it__text-inner">
-            {block.labelRight && <span className="editorial-it__label">{block.labelRight}</span>}
-            {block.headingRight && <h3 className="editorial-it__heading" style={{ margin: 0, marginBottom: block.bodyRight ? '20px' : '0' }}>{block.headingRight}</h3>}
+            {block.labelRight && <span className="editorial-it__label" style={labelStyle}>{block.labelRight}</span>}
+            {block.headingRight && (
+              <h3
+                className="editorial-it__heading"
+                style={{ margin: 0, marginBottom: block.bodyRight ? '20px' : '0', ...(headingStyle || {}) }}
+              >
+                {block.headingRight}
+              </h3>
+            )}
             {block.bodyRight && (
               <p
                 className="editorial-it__body"
+                style={bodyStyle}
                 dangerouslySetInnerHTML={{ __html: block.bodyRight }}
               />
             )}
@@ -90,11 +141,11 @@ export default function ImageTextBlock({ block, index }: { block: ImageTextBlock
     return (
       <div ref={ref} className="editorial-it editorial-it--text-text" style={{ padding: '80px 16px', alignItems: 'center' }}>
         <div className="editorial-it__image" style={{ width: '100%', flex: 1 }}>
-          {block.src && (
-            block.src.endsWith('.mp4') || block.src.endsWith('.webm') ? (
+          {leftMediaSrc && (
+            isVideo(leftMediaSrc) ? (
               <video
                 className="editorial-it__media"
-                src={block.src}
+                src={leftMediaSrc}
                 autoPlay
                 muted
                 loop
@@ -104,7 +155,7 @@ export default function ImageTextBlock({ block, index }: { block: ImageTextBlock
             ) : (
               <img
                 className="editorial-it__media"
-                src={block.src}
+                src={leftMediaSrc}
                 alt={block.alt ?? ''}
                 loading="lazy"
               />
@@ -112,11 +163,11 @@ export default function ImageTextBlock({ block, index }: { block: ImageTextBlock
           )}
         </div>
         <div className="editorial-it__image" style={{ width: '100%', flex: 1 }}>
-          {block.mediaRight && (
-            block.mediaRight.endsWith('.mp4') || block.mediaRight.endsWith('.webm') ? (
+          {rightMediaSrc && (
+            isVideo(rightMediaSrc) ? (
               <video
                 className="editorial-it__media"
-                src={block.mediaRight}
+                src={rightMediaSrc}
                 autoPlay
                 muted
                 loop
@@ -126,7 +177,7 @@ export default function ImageTextBlock({ block, index }: { block: ImageTextBlock
             ) : (
               <img
                 className="editorial-it__media"
-                src={block.mediaRight}
+                src={rightMediaSrc}
                 alt={block.altRight ?? ''}
                 loading="lazy"
               />
@@ -137,6 +188,10 @@ export default function ImageTextBlock({ block, index }: { block: ImageTextBlock
     )
   }
 
+  const activeLabel = variant === 'image-text' ? (block.labelRight || block.label) : (block.label || block.labelRight)
+  const activeHeading = variant === 'image-text' ? (block.headingRight || block.heading) : (block.heading || block.headingRight)
+  const activeBody = variant === 'image-text' ? (block.bodyRight || block.body) : (block.body || block.bodyRight)
+
   return (
     <div
       ref={ref}
@@ -144,20 +199,23 @@ export default function ImageTextBlock({ block, index }: { block: ImageTextBlock
     >
       <div className="editorial-it__text">
         <div className="editorial-it__text-inner">
-          {block.label && <span className="editorial-it__label">{block.label}</span>}
-          <h3 className="editorial-it__heading">{block.heading}</h3>
-          <p
-            className="editorial-it__body"
-            dangerouslySetInnerHTML={{ __html: block.body }}
-          />
+          {activeLabel && <span className="editorial-it__label" style={labelStyle}>{activeLabel}</span>}
+          {activeHeading && <h3 className="editorial-it__heading" style={headingStyle}>{activeHeading}</h3>}
+          {activeBody && (
+            <p
+              className="editorial-it__body"
+              style={bodyStyle}
+              dangerouslySetInnerHTML={{ __html: activeBody }}
+            />
+          )}
         </div>
       </div>
       <div className="editorial-it__image">
-        {block.src && (
-          block.src.endsWith('.mp4') || block.src.endsWith('.webm') ? (
+        {leftMediaSrc && (
+          isVideo(leftMediaSrc) ? (
             <video
               className="editorial-it__media"
-              src={block.src}
+              src={leftMediaSrc}
               autoPlay
               muted
               loop
@@ -167,7 +225,7 @@ export default function ImageTextBlock({ block, index }: { block: ImageTextBlock
           ) : (
             <img
               className="editorial-it__media"
-              src={block.src}
+              src={leftMediaSrc}
               alt={block.alt ?? ''}
               loading="lazy"
             />

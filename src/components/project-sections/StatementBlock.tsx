@@ -34,7 +34,10 @@ export default function StatementBlock({ block }: { block: StatementBlockType })
 
   return (
     <div ref={ref} className="editorial-statement">
-      <blockquote className="editorial-statement__text">
+      <blockquote
+        className="editorial-statement__text"
+        style={block.textColor ? { color: block.textColor } : undefined}
+      >
         &ldquo;{block.text}&rdquo;
       </blockquote>
     </div>

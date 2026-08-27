@@ -65,6 +65,7 @@ export type ContentBlock =
 
 export interface BaseContentBlock {
   backgroundColor?: string
+  textColor?: string
 }
 
 export interface FullImageBlock extends BaseContentBlock {
@@ -112,11 +113,13 @@ export interface Gallery2Block extends BaseContentBlock {
 
 export interface Gallery3Block extends BaseContentBlock {
   type: 'gallery-3'
-  images: [
-    { src: string; alt?: string; title?: string; description?: string; metadata?: string },
-    { src: string; alt?: string; title?: string; description?: string; metadata?: string },
-    { src: string; alt?: string; title?: string; description?: string; metadata?: string }
-  ]
+  images: Array<{
+    src: string
+    alt?: string
+    title?: string
+    description?: string
+    metadata?: string
+  }>
 }
 
 export interface SliderBlock extends BaseContentBlock {
@@ -131,6 +134,8 @@ export interface SliderBlock extends BaseContentBlock {
 export interface VideoBlock extends BaseContentBlock {
   type: 'video'
   src: string
+  url?: string
+  videoFile?: string
   poster?: string
   autoPlay?: boolean
 }

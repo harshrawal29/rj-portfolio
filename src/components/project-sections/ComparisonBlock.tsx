@@ -65,8 +65,18 @@ export default function ComparisonBlock({ block }: { block: ComparisonBlockType 
       >
         {/* Floating Labels */}
         <div className="editorial-comparison__labels-overlay">
-          <span className="editorial-comparison__label-pill editorial-comparison__label-pill--left">{block.beforeLabel ?? 'Before'}</span>
-          <span className="editorial-comparison__label-pill editorial-comparison__label-pill--right">{block.afterLabel ?? 'After'}</span>
+          <span
+            className="editorial-comparison__label-pill editorial-comparison__label-pill--left"
+            style={block.textColor ? { color: block.textColor } : undefined}
+          >
+            {block.beforeLabel ?? 'Before'}
+          </span>
+          <span
+            className="editorial-comparison__label-pill editorial-comparison__label-pill--right"
+            style={block.textColor ? { color: block.textColor } : undefined}
+          >
+            {block.afterLabel ?? 'After'}
+          </span>
         </div>
         {/* After image (full width background) */}
         <img

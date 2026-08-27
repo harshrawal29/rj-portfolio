@@ -43,7 +43,7 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
       _type == 'gallery3Block' => {
         images[] {
           ...,
-          "image": image.asset->url
+          "image": coalesce(media.asset->url, video.asset->url, image.asset->url)
         }
       },
       _type == 'sliderBlock' => {
@@ -88,7 +88,13 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
           return { type, src: rest.image, ...rest }
         }
         if (type === 'image-text') {
-          return { type, src: rest.image, ...rest }
+          const src = rest.variant === 'text-image'
+            ? (rest.mediaRight || rest.media || rest.image)
+            : (rest.media || rest.mediaRight || rest.image)
+          const alt = rest.variant === 'text-image'
+            ? (rest.altRight || rest.alt)
+            : (rest.alt || rest.altRight)
+          return { type, ...rest, src, alt }
         }
         if (type === 'gallery-2') {
           return { type, ...rest, images: [{src: rest.image1, alt: rest.alt1}, {src: rest.image2, alt: rest.alt2}] }
@@ -109,7 +115,15 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
            return { type, ...rest, images }
         }
         if (type === 'video') {
-           return { type, ...rest, src: rest.videoFile || rest.url, poster: rest.poster }
+           return {
+             type,
+             ...rest,
+             src: rest.videoFile || rest.url,
+             url: rest.url,
+             videoFile: rest.videoFile,
+             poster: rest.poster,
+             autoPlay: rest.autoPlay !== undefined ? rest.autoPlay : true,
+           }
         }
         
         return { type, ...rest }

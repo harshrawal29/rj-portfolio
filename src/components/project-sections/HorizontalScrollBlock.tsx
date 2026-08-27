@@ -92,10 +92,20 @@ export default function HorizontalScrollBlock({ block }: { block: HorizontalScro
               <img src={img.src} alt={img.alt ?? ''} draggable={false} />
             </div>
             <div className="editorial-story__caption">
-              <span className="editorial-story__counter">
+              <span
+                className="editorial-story__counter"
+                style={block.textColor ? { color: block.textColor, opacity: 0.6 } : undefined}
+              >
                 {String(i + 1).padStart(2, '0')} / {String(block.images.length).padStart(2, '0')}
               </span>
-              {img.alt && <span className="editorial-story__desc">{img.alt}</span>}
+              {img.alt && (
+                <span
+                  className="editorial-story__desc"
+                  style={block.textColor ? { color: block.textColor } : undefined}
+                >
+                  {img.alt}
+                </span>
+              )}
             </div>
           </div>
         ))}

@@ -41,9 +41,6 @@ export default function FullImageBlock({ block }: { block: FullImageBlockType })
           loading="lazy"
         />
       </div>
-      {block.caption && (
-        <p className="editorial-full-image__caption">{block.caption}</p>
-      )}
     </div>
   )
 }

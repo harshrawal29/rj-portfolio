@@ -238,7 +238,7 @@ export function Component() {
       <header ref={heroRef} className="case-study__hero">
         {project.cover && (
           <div className="case-study__hero-bg">
-            {project.cover.endsWith('.mp4') || project.cover.endsWith('.webm') ? (
+            {typeof project.cover === 'string' && (project.cover.endsWith('.mp4') || project.cover.endsWith('.webm')) ? (
               <video
                 data-project-hero
                 ref={imageRef as unknown as React.RefObject<HTMLVideoElement>}

@@ -157,10 +157,10 @@ function ProjectList({ projects, category }: { projects: ProjectSummary[]; categ
   return (
     <div ref={containerRef} className="relative w-full">
       <div className="pointer-events-none absolute left-1/2 top-0 z-0 h-full w-[400px] -translate-x-1/2 hidden md:block lg:w-[500px]">
-        <div className="sticky top-[25vh] h-[50vh] w-full overflow-hidden">
+        <div className="sticky top-0 h-screen w-full overflow-hidden">
           {projects.map((project) => (
             <div key={project.slug} className="project-image absolute inset-0 h-full w-full">
-              {project.cover && (project.cover.endsWith('.mp4') || project.cover.endsWith('.webm')) ? (
+              {project.cover && typeof project.cover === 'string' && (project.cover.endsWith('.mp4') || project.cover.endsWith('.webm')) ? (
                 <motion.video
                   layoutId={`project-image-${project.slug}`}
                   data-slug={project.slug}

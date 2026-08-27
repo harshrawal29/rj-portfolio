@@ -170,7 +170,8 @@ export default function SliderBlock({ block }: { block: SliderBlockType }) {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.4 }}
-                  className="text-xs md:text-sm tracking-widest text-gray-500 uppercase text-center font-light"
+                  className="text-xs md:text-sm tracking-widest uppercase text-center font-bold text-neutral-800"
+                  style={block.textColor ? { color: block.textColor } : undefined}
                 >
                   {block.slides[current].caption}
                 </motion.p>
