@@ -79,15 +79,12 @@ export default function ContentBlockRenderer({
   const content = renderBlock()
 
   const wrapperStyle: React.CSSProperties = {}
-  if (resolvedBlock.backgroundColor) {
-    wrapperStyle.backgroundColor = resolvedBlock.backgroundColor
-  }
   if (resolvedBlock.textColor) {
     wrapperStyle.color = resolvedBlock.textColor
     ;(wrapperStyle as any)['--block-text-color'] = resolvedBlock.textColor
   }
 
-  if ((resolvedBlock.backgroundColor || resolvedBlock.textColor) && content) {
+  if (resolvedBlock.textColor && content) {
     return (
       <div style={wrapperStyle}>
         {content}

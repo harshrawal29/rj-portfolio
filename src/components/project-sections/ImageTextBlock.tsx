@@ -92,45 +92,56 @@ export default function ImageTextBlock({ block, index }: { block: ImageTextBlock
 
   if (variant === 'text-text') {
     return (
-      <div ref={ref} className="editorial-it editorial-it--text-text" style={{ padding: '80px 16px', alignItems: 'start' }}>
-        <div className="editorial-it__text">
-          <div className="editorial-it__text-inner">
-            {block.label && <span className="editorial-it__label" style={labelStyle}>{block.label}</span>}
-            {block.heading && (
-              <h3
-                className="editorial-it__heading"
-                style={{ margin: 0, marginBottom: block.body ? '20px' : '0', ...(headingStyle || {}) }}
-              >
-                {block.heading}
-              </h3>
-            )}
-            {block.body && (
-              <p
-                className="editorial-it__body"
-                style={bodyStyle}
-                dangerouslySetInnerHTML={{ __html: block.body }}
-              />
-            )}
+      <div className="editorial-it-container">
+        <div
+          ref={ref}
+          className="editorial-it editorial-it--text-text"
+          style={{
+            paddingTop: '80px',
+            paddingBottom: '80px',
+            alignItems: 'start',
+            ...(block.backgroundColor ? { backgroundColor: block.backgroundColor } : {})
+          }}
+        >
+          <div className="editorial-it__text">
+            <div className="editorial-it__text-inner">
+              {block.label && <span className="editorial-it__label" style={labelStyle}>{block.label}</span>}
+              {block.heading && (
+                <h3
+                  className="editorial-it__heading"
+                  style={{ margin: 0, marginBottom: block.body ? '20px' : '0', ...(headingStyle || {}) }}
+                >
+                  {block.heading}
+                </h3>
+              )}
+              {block.body && (
+                <p
+                  className="editorial-it__body"
+                  style={bodyStyle}
+                  dangerouslySetInnerHTML={{ __html: block.body }}
+                />
+              )}
+            </div>
           </div>
-        </div>
-        <div className="editorial-it__text">
-          <div className="editorial-it__text-inner">
-            {block.labelRight && <span className="editorial-it__label" style={labelStyle}>{block.labelRight}</span>}
-            {block.headingRight && (
-              <h3
-                className="editorial-it__heading"
-                style={{ margin: 0, marginBottom: block.bodyRight ? '20px' : '0', ...(headingStyle || {}) }}
-              >
-                {block.headingRight}
-              </h3>
-            )}
-            {block.bodyRight && (
-              <p
-                className="editorial-it__body"
-                style={bodyStyle}
-                dangerouslySetInnerHTML={{ __html: block.bodyRight }}
-              />
-            )}
+          <div className="editorial-it__text">
+            <div className="editorial-it__text-inner">
+              {block.labelRight && <span className="editorial-it__label" style={labelStyle}>{block.labelRight}</span>}
+              {block.headingRight && (
+                <h3
+                  className="editorial-it__heading"
+                  style={{ margin: 0, marginBottom: block.bodyRight ? '20px' : '0', ...(headingStyle || {}) }}
+                >
+                  {block.headingRight}
+                </h3>
+              )}
+              {block.bodyRight && (
+                <p
+                  className="editorial-it__body"
+                  style={bodyStyle}
+                  dangerouslySetInnerHTML={{ __html: block.bodyRight }}
+                />
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -139,8 +150,93 @@ export default function ImageTextBlock({ block, index }: { block: ImageTextBlock
 
   if (variant === 'image-image') {
     return (
-      <div ref={ref} className="editorial-it editorial-it--text-text" style={{ padding: '80px 16px', alignItems: 'center' }}>
-        <div className="editorial-it__image" style={{ width: '100%', flex: 1 }}>
+      <div className="editorial-it-container">
+        <div
+          ref={ref}
+          className="editorial-it editorial-it--text-text"
+          style={{
+            paddingTop: '80px',
+            paddingBottom: '80px',
+            alignItems: 'center',
+            ...(block.backgroundColor ? { backgroundColor: block.backgroundColor } : {})
+          }}
+        >
+          <div className="editorial-it__image" style={{ width: '100%', flex: 1 }}>
+            {leftMediaSrc && (
+              isVideo(leftMediaSrc) ? (
+                <video
+                  className="editorial-it__media"
+                  src={leftMediaSrc}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover' }}
+                />
+              ) : (
+                <img
+                  className="editorial-it__media"
+                  src={leftMediaSrc}
+                  alt={block.alt ?? ''}
+                  loading="lazy"
+                />
+              )
+            )}
+          </div>
+          <div className="editorial-it__image" style={{ width: '100%', flex: 1 }}>
+            {rightMediaSrc && (
+              isVideo(rightMediaSrc) ? (
+                <video
+                  className="editorial-it__media"
+                  src={rightMediaSrc}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover' }}
+                />
+              ) : (
+                <img
+                  className="editorial-it__media"
+                  src={rightMediaSrc}
+                  alt={block.altRight ?? ''}
+                  loading="lazy"
+                />
+              )
+            )}
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  const activeLabel = variant === 'image-text' ? (block.labelRight || block.label) : (block.label || block.labelRight)
+  const activeHeading = variant === 'image-text' ? (block.headingRight || block.heading) : (block.heading || block.headingRight)
+  const activeBody = variant === 'image-text' ? (block.bodyRight || block.body) : (block.body || block.bodyRight)
+
+  return (
+    <div className="editorial-it-container">
+      <div
+        ref={ref}
+        className={`editorial-it ${variant === 'image-text' ? 'editorial-it--reversed' : ''}`}
+      >
+        <div
+          className="editorial-it__text"
+          style={block.backgroundColor ? { backgroundColor: block.backgroundColor } : undefined}
+        >
+          <div className="editorial-it__text-inner">
+            {activeLabel && <span className="editorial-it__label" style={labelStyle}>{activeLabel}</span>}
+            {activeHeading && <h3 className="editorial-it__heading" style={headingStyle}>{activeHeading}</h3>}
+            {activeBody && (
+              <p
+                className="editorial-it__body"
+                style={bodyStyle}
+                dangerouslySetInnerHTML={{ __html: activeBody }}
+              />
+            )}
+          </div>
+        </div>
+        <div className="editorial-it__image">
           {leftMediaSrc && (
             isVideo(leftMediaSrc) ? (
               <video
@@ -162,75 +258,6 @@ export default function ImageTextBlock({ block, index }: { block: ImageTextBlock
             )
           )}
         </div>
-        <div className="editorial-it__image" style={{ width: '100%', flex: 1 }}>
-          {rightMediaSrc && (
-            isVideo(rightMediaSrc) ? (
-              <video
-                className="editorial-it__media"
-                src={rightMediaSrc}
-                autoPlay
-                muted
-                loop
-                playsInline
-                style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover' }}
-              />
-            ) : (
-              <img
-                className="editorial-it__media"
-                src={rightMediaSrc}
-                alt={block.altRight ?? ''}
-                loading="lazy"
-              />
-            )
-          )}
-        </div>
-      </div>
-    )
-  }
-
-  const activeLabel = variant === 'image-text' ? (block.labelRight || block.label) : (block.label || block.labelRight)
-  const activeHeading = variant === 'image-text' ? (block.headingRight || block.heading) : (block.heading || block.headingRight)
-  const activeBody = variant === 'image-text' ? (block.bodyRight || block.body) : (block.body || block.bodyRight)
-
-  return (
-    <div
-      ref={ref}
-      className={`editorial-it ${variant === 'image-text' ? 'editorial-it--reversed' : ''}`}
-    >
-      <div className="editorial-it__text">
-        <div className="editorial-it__text-inner">
-          {activeLabel && <span className="editorial-it__label" style={labelStyle}>{activeLabel}</span>}
-          {activeHeading && <h3 className="editorial-it__heading" style={headingStyle}>{activeHeading}</h3>}
-          {activeBody && (
-            <p
-              className="editorial-it__body"
-              style={bodyStyle}
-              dangerouslySetInnerHTML={{ __html: activeBody }}
-            />
-          )}
-        </div>
-      </div>
-      <div className="editorial-it__image">
-        {leftMediaSrc && (
-          isVideo(leftMediaSrc) ? (
-            <video
-              className="editorial-it__media"
-              src={leftMediaSrc}
-              autoPlay
-              muted
-              loop
-              playsInline
-              style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover' }}
-            />
-          ) : (
-            <img
-              className="editorial-it__media"
-              src={leftMediaSrc}
-              alt={block.alt ?? ''}
-              loading="lazy"
-            />
-          )
-        )}
       </div>
     </div>
   )

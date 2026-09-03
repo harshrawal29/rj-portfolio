@@ -5,7 +5,7 @@ import type { VideoBlock as VideoBlockType } from '../../types/portfolio'
 
 gsap.registerPlugin(ScrollTrigger)
 
-function getYouTubeEmbedUrl(url: string, autoPlay: boolean = true): string | null {
+function getYouTubeEmbedUrl(url: string, autoPlay: boolean = true, showControls: boolean = true): string | null {
   try {
     const regExp = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?|shorts)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i
     const match = url.match(regExp)
@@ -16,7 +16,7 @@ function getYouTubeEmbedUrl(url: string, autoPlay: boolean = true): string | nul
         mute: autoPlay ? '1' : '0',
         loop: '1',
         playlist: videoId,
-        controls: '1',
+        controls: showControls ? '1' : '0',
         rel: '0',
         modestbranding: '1',
         playsinline: '1',
@@ -29,7 +29,7 @@ function getYouTubeEmbedUrl(url: string, autoPlay: boolean = true): string | nul
   return null
 }
 
-function getVimeoEmbedUrl(url: string, autoPlay: boolean = true): string | null {
+function getVimeoEmbedUrl(url: string, autoPlay: boolean = true, showControls: boolean = true): string | null {
   try {
     const regExp = /(?:vimeo\.com\/|player\.vimeo\.com\/video\/)(?:channels\/(?:\w+\/)?|groups\/[^\/]*\/videos\/|album\/(?:\d+\/)?video\/|video\/|)(\d+)/i
     const match = url.match(regExp)
@@ -41,6 +41,7 @@ function getVimeoEmbedUrl(url: string, autoPlay: boolean = true): string | null 
         loop: '1',
         autopause: '0',
         playsinline: '1',
+        controls: showControls ? '1' : '0',
       })
       return `https://player.vimeo.com/video/${videoId}?${params.toString()}`
     }
@@ -54,9 +55,10 @@ export default function VideoBlock({ block }: { block: VideoBlockType }) {
   const ref = useRef<HTMLDivElement>(null)
   const videoSource = block.videoFile || block.url || block.src
   const autoPlay = block.autoPlay !== false
+  const showControls = block.controls !== undefined ? Boolean(block.controls) : (block.showControls !== undefined ? Boolean(block.showControls) : true)
 
-  const ytEmbedUrl = videoSource ? getYouTubeEmbedUrl(videoSource, autoPlay) : null
-  const vimeoEmbedUrl = videoSource ? getVimeoEmbedUrl(videoSource, autoPlay) : null
+  const ytEmbedUrl = videoSource ? getYouTubeEmbedUrl(videoSource, autoPlay, showControls) : null
+  const vimeoEmbedUrl = videoSource ? getVimeoEmbedUrl(videoSource, autoPlay, showControls) : null
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -123,7 +125,7 @@ export default function VideoBlock({ block }: { block: VideoBlockType }) {
         muted={autoPlay}
         loop
         playsInline
-        controls
+        controls={showControls}
         className="editorial-video__player"
       />
     </div>

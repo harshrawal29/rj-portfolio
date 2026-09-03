@@ -297,6 +297,7 @@ export const videoBlock = defineType({
     defineField({name: 'videoFile', title: 'Video File Upload (.mp4, .webm)', type: 'file', options: {accept: 'video/*'}}),
     defineField({name: 'poster', title: 'Poster Image', type: 'image', options: {hotspot: true}}),
     defineField({name: 'autoPlay', title: 'Autoplay', type: 'boolean', initialValue: true}),
+    defineField({name: 'controls', title: 'Show Controls', description: 'Enable or disable playback controls on the video', type: 'boolean', initialValue: true}),
   ],
   preview: {
     select: {title: 'url', media: 'poster'},

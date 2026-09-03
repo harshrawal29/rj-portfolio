@@ -37,8 +37,8 @@ export default function SliderBlock({ block }: { block: SliderBlockType }) {
   if (!block || !block.slides || block.slides.length === 0) return null;
 
   return (
-    <section className="w-full min-h-0 md:min-h-[60vh] py-8 md:py-12 bg-[#FCFCFC] flex flex-col items-center justify-center overflow-hidden">
-      <div className="w-full px-4 md:px-8 max-w-[1800px] mx-auto">
+    <section className="w-full min-h-0 md:min-h-[60vh] py-8 md:py-12 bg-white flex flex-col items-center justify-center overflow-hidden">
+      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-5">
 
         {/* Desktop & Tablet Layout */}
         <div className="hidden md:flex w-full max-w-[1000px] lg:max-w-[1300px] mx-auto justify-center items-center gap-4 lg:gap-8 h-[50vh] lg:h-[60vh] mb-4 lg:mb-6">

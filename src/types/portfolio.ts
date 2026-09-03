@@ -138,6 +138,8 @@ export interface VideoBlock extends BaseContentBlock {
   videoFile?: string
   poster?: string
   autoPlay?: boolean
+  controls?: boolean
+  showControls?: boolean
 }
 
 export interface TimelineBlock extends BaseContentBlock {

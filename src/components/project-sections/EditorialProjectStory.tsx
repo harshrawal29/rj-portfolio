@@ -39,9 +39,9 @@ export default function EditorialProjectStory({ project }: { project: Project })
   const mainStory = project.editorialStory || "A narrative describing the core creative direction and strategic insight behind the project."
 
   return (
-    <section className="w-full py-16 lg:py-32 bg-[#FCFCFC] text-[#111111]" ref={ref}>
+    <section className="w-full py-16 lg:py-32 bg-white text-[#111111]" ref={ref}>
       <motion.div
-        className="max-w-[1600px] mx-auto px-4 md:px-8 flex flex-col md:flex-row gap-12 md:gap-16 lg:gap-24"
+        className="max-w-[1600px] mx-auto px-4 sm:px-5 flex flex-col md:flex-row gap-12 md:gap-16 lg:gap-24"
         variants={containerVariants}
         initial="hidden"
         animate={controls}
