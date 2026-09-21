@@ -4,13 +4,12 @@ import { useEffect, useRef } from 'react'
 
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { getCategoryBySlug } from '../../lib/portfolio/getCategoryBySlug'
 import { getProjectBySlug } from '../../lib/portfolio/getProjectBySlug'
-import { getProjectsByCategory } from '../../lib/portfolio/getProjectsByCategory'
+import { getProjects } from '../../lib/portfolio/getProjects'
 import { notFound } from '../../lib/portfolio/notFound'
 import ContentBlockRenderer from '../../components/project-sections/ContentBlockRenderer'
 import EditorialProjectStory from '../../components/project-sections/EditorialProjectStory'
-import type { Category, Project, ProjectSummary } from '../../types/portfolio'
+import type { Project, ProjectSummary } from '../../types/portfolio'
 import './editorial-blocks.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -20,7 +19,6 @@ gsap.registerPlugin(ScrollTrigger)
    ═══════════════════════════════════════════════════════════════ */
 
 interface WorkProjectLoaderData {
-  category: Category
   project: Project
   nextProject: ProjectSummary | null
 }
@@ -38,24 +36,18 @@ export async function loader({ params }: LoaderFunctionArgs): Promise<WorkProjec
     notFound('Project not found')
   }
 
-  const category = await getCategoryBySlug(project.category)
+  const allProjects = await getProjects()
 
-  if (!category) {
-    notFound('Category not found')
-  }
-
-  const categoryProjects = await getProjectsByCategory(category.slug)
-
-  const currentIndex = categoryProjects.findIndex((p) => p.slug === projectSlug)
+  const currentIndex = allProjects.findIndex((p) => p.slug === projectSlug)
   let nextProject: ProjectSummary | null = null
 
-  if (currentIndex !== -1 && categoryProjects.length > 1) {
-    nextProject = currentIndex < categoryProjects.length - 1
-      ? categoryProjects[currentIndex + 1]
-      : categoryProjects[0]
+  if (currentIndex !== -1 && allProjects.length > 1) {
+    nextProject = currentIndex < allProjects.length - 1
+      ? allProjects[currentIndex + 1]
+      : allProjects[0]
   }
 
-  return { category, project, nextProject }
+  return { project, nextProject }
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -67,14 +59,14 @@ export function Component() {
   const currentData = useLoaderData() as WorkProjectLoaderData | undefined
   const cachedData = useRef<WorkProjectLoaderData | null>(null)
 
-  if (currentData && currentData.category && currentData.project) {
+  if (currentData && currentData.project) {
     cachedData.current = currentData
   }
 
-  const data = currentData?.category && currentData?.project ? currentData : cachedData.current
+  const data = currentData?.project ? currentData : cachedData.current
   if (!data) return null
 
-  const { category, project, nextProject } = data
+  const { project, nextProject } = data
 
   const pageRef = useRef<HTMLDivElement>(null)
   const heroRef = useRef<HTMLElement>(null)
@@ -264,15 +256,11 @@ export function Component() {
 
         <nav className="hero-reveal case-study__hero-nav">
           <Link to="/work">All Work</Link>
-          <span className="case-study__hero-nav-sep" aria-hidden="true" />
-          <span>{category.title}</span>
         </nav>
 
         <div className="case-study__hero-content">
 
           <div className="hero-reveal case-study__hero-meta">
-            <span className="case-study__hero-meta-item">{category.title}</span>
-            <span className="case-study__hero-meta-sep">·</span>
             <span className="case-study__hero-meta-item">{project.year}</span>
           </div>
           <h1 className="hero-reveal case-study__hero-title">{project.title}</h1>

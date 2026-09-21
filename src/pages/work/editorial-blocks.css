@@ -18,9 +18,7 @@
 .editorial-full-image__wrapper img {
   width: 100%;
   height: auto;
-  max-height: calc(100vh - 32px);
   display: block;
-  object-fit: contain;
 }
 
 /* ─── Image + Text Block ────────────────────────────────────── */
@@ -544,15 +542,12 @@
 .editorial-video__player {
   width: 100%;
   height: auto;
-  max-height: calc(100vh - 32px);
   display: block;
-  object-fit: contain;
 }
 .editorial-video__iframe-wrapper {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  max-height: calc(100vh - 32px);
   margin: 0 auto;
   overflow: hidden;
   display: flex;

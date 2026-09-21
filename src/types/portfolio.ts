@@ -28,7 +28,7 @@ export interface Category {
 export interface ProjectSummary {
   title: string
   slug: string
-  category: CategorySlug
+  category?: CategorySlug
   year: number | string
   cover: string
   summary: string

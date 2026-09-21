@@ -89,8 +89,8 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
         }
         if (type === 'image-text') {
           const src = rest.variant === 'text-image'
-            ? (rest.mediaRight || rest.media || rest.image)
-            : (rest.media || rest.mediaRight || rest.image)
+            ? (rest.mediaRight || rest.image || rest.media)
+            : (rest.image || rest.media || rest.mediaRight)
           const alt = rest.variant === 'text-image'
             ? (rest.altRight || rest.alt)
             : (rest.alt || rest.altRight)

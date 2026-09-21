@@ -338,9 +338,11 @@ function ProjectCard({ project }: { project: Project }) {
         ref={infoRef}
         className="absolute bottom-0 left-0 right-0 p-8 text-white z-10"
       >
-        <p className="text-xs uppercase tracking-[0.2em] text-white/70">
-          {project.category.replace(/-/g, ' ')}
-        </p>
+        {project.category && (
+          <p className="text-xs uppercase tracking-[0.2em] text-white/70">
+            {project.category.replace(/-/g, ' ')}
+          </p>
+        )}
         <h3 className="mt-2 text-2xl font-medium uppercase tracking-tight sm:text-3xl">
           {project.title}
         </h3>

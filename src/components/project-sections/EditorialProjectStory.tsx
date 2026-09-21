@@ -81,11 +81,6 @@ export default function EditorialProjectStory({ project }: { project: Project })
             <p className="text-sm md:text-base font-medium">{project.year}</p>
           </motion.div>
 
-          <motion.div variants={itemVariants} className="flex flex-col gap-1">
-            <p className="text-[10px] md:text-xs tracking-[0.1em] uppercase text-gray-400">Category</p>
-            <p className="text-sm md:text-base font-medium capitalize">{project.category.replace(/-/g, ' ')}</p>
-          </motion.div>
-
           {project.services && project.services.length > 0 && (
             <motion.div variants={itemVariants} className="flex flex-col gap-2">
               <p className="text-[10px] md:text-xs tracking-[0.1em] uppercase text-gray-400">{project.servicesHeading || 'Services'}</p>

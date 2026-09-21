@@ -35,13 +35,6 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'category',
-      title: 'Category',
-      type: 'reference',
-      to: [{type: 'category'}],
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
       name: 'year',
       title: 'Year',
       type: 'string',
@@ -176,11 +169,10 @@ export default defineType({
   preview: {
     select: {
       title: 'title',
-      category: 'category.title',
       mediaUrl: 'cover.asset.url',
     },
     prepare(selection) {
-      const {title, category, mediaUrl} = selection
+      const {title, mediaUrl} = selection
       let media
       
       if (mediaUrl) {
@@ -200,7 +192,6 @@ export default defineType({
       
       return {
         title,
-        subtitle: category ? `Category: ${category}` : 'No category set',
         media,
       }
     },

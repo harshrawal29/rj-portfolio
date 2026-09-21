@@ -37,7 +37,7 @@ export default function ImageTextBlock({ block, index }: { block: ImageTextBlock
   const ref = useRef<HTMLDivElement>(null)
   const variant = block.variant ?? (index % 2 === 0 ? 'text-image' : 'image-text')
 
-  const leftMediaSrc = getMediaUrl(block.src || (block as any).media)
+  const leftMediaSrc = getMediaUrl(block.src || (block as any).image || (block as any).media)
   const rightMediaSrc = getMediaUrl(block.mediaRight)
 
   useEffect(() => {
