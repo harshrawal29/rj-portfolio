@@ -1,5 +1,6 @@
 import type { Project } from '../../types/portfolio'
 import { sanityClient } from '../sanity'
+import { toHTML } from '@portabletext/to-html'
 
 export async function getProjectBySlug(slug: string): Promise<Project | null> {
   const query = `*[_type == "project" && slug.current == $slug][0] {
@@ -73,6 +74,17 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
       project.contentBlocks = project.contentBlocks.map((block: any) => {
         // Remove Sanity internal fields
         const { _key, _type, ...rest } = block
+        
+        // Convert portable text to HTML strings for text fields
+        if (Array.isArray(rest.body)) rest.body = toHTML(rest.body)
+        if (Array.isArray(rest.bodyRight)) rest.bodyRight = toHTML(rest.bodyRight)
+        if (Array.isArray(rest.text)) rest.text = toHTML(rest.text)
+        if (Array.isArray(rest.steps)) {
+          rest.steps = rest.steps.map((step: any) => {
+            if (Array.isArray(step.description)) step.description = toHTML(step.description)
+            return step
+          })
+        }
         
         // Map _type to type to match the existing frontend types
         let type = _type.replace('Block', '')

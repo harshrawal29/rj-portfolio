@@ -245,7 +245,7 @@ export function Component() {
               <img
                 data-project-hero
                 ref={imageRef as unknown as React.RefObject<HTMLImageElement>}
-                src={project.cover.startsWith('http') ? project.cover : `/projects/${project.slug}/${project.cover}`}
+                src={project.cover}
                 alt={project.title}
                 className="case-study__hero-img"
               />
@@ -277,7 +277,7 @@ export function Component() {
       {hasContentBlocks && (
         <div className="case-study__blocks">
           {project.contentBlocks!.map((block, i) => (
-            <ContentBlockRenderer key={i} block={block} index={i} projectSlug={project.slug} />
+            <ContentBlockRenderer key={i} block={block} index={i} />
           ))}
         </div>
       )}

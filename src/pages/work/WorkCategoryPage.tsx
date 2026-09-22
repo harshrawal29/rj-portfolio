@@ -175,7 +175,7 @@ function ProjectList({ projects, category }: { projects: ProjectSummary[]; categ
                 <motion.img
                   layoutId={`project-image-${project.slug}`}
                   data-slug={project.slug}
-                  src={project.cover.startsWith('http') ? project.cover : `/projects/${project.slug}/${project.cover}`}
+                  src={project.cover}
                   alt={project.title}
                   className="h-full w-full object-cover"
                 />

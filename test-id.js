@@ -1,1 +1,0 @@
-// add id to image

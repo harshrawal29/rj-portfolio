@@ -101,7 +101,8 @@ export const imageTextBlock = defineType({
     defineField({
       name: 'body', 
       title: 'Left Body', 
-      type: 'text',
+      type: 'array',
+      of: [{type: 'block'}],
       hidden: ({ parent }) => parent?.variant === 'image-image' || parent?.variant === 'image-text'
     }),
     
@@ -121,7 +122,8 @@ export const imageTextBlock = defineType({
     defineField({
       name: 'bodyRight', 
       title: 'Right Body', 
-      type: 'text',
+      type: 'array',
+      of: [{type: 'block'}],
       hidden: ({ parent }) => parent?.variant !== 'text-text' && parent?.variant !== 'image-text'
     }),
   ],
@@ -151,7 +153,8 @@ export const statementBlock = defineType({
     defineField({
       name: 'text',
       title: 'Statement Text',
-      type: 'text',
+      type: 'array',
+      of: [{type: 'block'}],
       validation: (rule) => rule.required(),
     }),
   ],
@@ -325,7 +328,7 @@ export const timelineBlock = defineType({
           fields: [
             defineField({name: 'number', title: 'Step Number/Icon', type: 'string'}),
             defineField({name: 'label', title: 'Label', type: 'string'}),
-            defineField({name: 'description', title: 'Description', type: 'text'}),
+            defineField({name: 'description', title: 'Description', type: 'array', of: [{type: 'block'}]}),
           ],
         }),
       ],

@@ -322,7 +322,7 @@ function ProjectCard({ project }: { project: Project }) {
         ) : project.cover && (
           <img
             ref={imageRef as unknown as React.RefObject<HTMLImageElement>}
-            src={project.cover.startsWith('http') ? project.cover : `/projects/${project.slug}/${project.cover}`}
+            src={project.cover}
             alt={project.title}
             className="h-full w-full object-cover opacity-80 transition-opacity duration-500 group-hover:opacity-100"
             loading="lazy"
