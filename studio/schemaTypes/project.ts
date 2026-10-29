@@ -41,6 +41,14 @@ export default defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'category',
+      title: 'Category',
+      type: 'reference',
+      to: [{type: 'category'}],
+      description: 'Select the category this project belongs to',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: 'cover',
       title: 'Cover Media',
       type: 'file',

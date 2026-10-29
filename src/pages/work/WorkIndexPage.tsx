@@ -17,7 +17,7 @@ export async function loader(): Promise<WorkIndexLoaderData> {
   const projectCounts = Object.fromEntries(
     categories.map((category) => [
       category.slug,
-      projects.filter((project) => project.category === category.slug).length,
+      projects.filter((project) => project.category?.toLowerCase() === category.slug?.toLowerCase()).length,
     ]),
   ) as Record<CategorySlug, number>
 

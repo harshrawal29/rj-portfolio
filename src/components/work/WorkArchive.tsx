@@ -143,7 +143,9 @@ function WorkArchive({ categories, projects }: WorkArchiveProps) {
 
       <div role="list" className="flex flex-col relative z-10">
         {categories.map((category, index) => {
-          const categoryProjects = projects.filter(p => p.category === category.slug)
+          const categoryProjects = projects.filter(
+            (p) => p.category?.toLowerCase() === category.slug?.toLowerCase()
+          )
           const words = category.title.split(' ')
 
           const isDark = index % 2 === 1
