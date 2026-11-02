@@ -85,9 +85,17 @@ export interface ImageTextBlock extends BaseContentBlock {
   label?: string
   heading: string
   body: string
+  textSize?: string
+  customTextSize?: string
+  lineHeight?: string
+  customLineHeight?: string
   labelRight?: string
   headingRight?: string
   bodyRight?: string
+  textSizeRight?: string
+  customTextSizeRight?: string
+  lineHeightRight?: string
+  customLineHeightRight?: string
 }
 
 export interface StatementBlock extends BaseContentBlock {

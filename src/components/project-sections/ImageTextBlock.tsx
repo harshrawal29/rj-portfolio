@@ -33,6 +33,28 @@ function getMediaUrl(val: unknown): string {
   return ''
 }
 
+function resolveTextSize(size?: string, customSize?: string): string | undefined {
+  if (!size || size === 'default') return undefined
+  if (size === 'custom') {
+    if (!customSize || !customSize.trim()) return undefined
+    const trimmed = customSize.trim()
+    if (/^\d+(\.\d+)?$/.test(trimmed)) {
+      return `${trimmed}px`
+    }
+    return trimmed
+  }
+  return size
+}
+
+function resolveLineHeight(lh?: string, customLh?: string): string | undefined {
+  if (!lh || lh === 'default') return undefined
+  if (lh === 'custom') {
+    if (!customLh || !customLh.trim()) return undefined
+    return customLh.trim()
+  }
+  return lh
+}
+
 export default function ImageTextBlock({ block, index }: { block: ImageTextBlockType; index: number }) {
   const ref = useRef<HTMLDivElement>(null)
   const variant = block.variant ?? (index % 2 === 0 ? 'text-image' : 'image-text')
@@ -91,6 +113,22 @@ export default function ImageTextBlock({ block, index }: { block: ImageTextBlock
   const bodyStyle = block.textColor ? { color: block.textColor, opacity: 0.85 } : undefined
 
   if (variant === 'text-text') {
+    const leftSize = resolveTextSize(block.textSize, block.customTextSize)
+    const leftLineHeight = resolveLineHeight(block.lineHeight, block.customLineHeight)
+    const leftBodyStyle = {
+      ...bodyStyle,
+      ...(leftSize ? { fontSize: leftSize } : {}),
+      ...(leftLineHeight ? { lineHeight: leftLineHeight } : {}),
+    }
+
+    const rightSize = resolveTextSize(block.textSizeRight, block.customTextSizeRight)
+    const rightLineHeight = resolveLineHeight(block.lineHeightRight, block.customLineHeightRight)
+    const rightBodyStyle = {
+      ...bodyStyle,
+      ...(rightSize ? { fontSize: rightSize } : {}),
+      ...(rightLineHeight ? { lineHeight: rightLineHeight } : {}),
+    }
+
     return (
       <div className="editorial-it-container">
         <div
@@ -115,9 +153,9 @@ export default function ImageTextBlock({ block, index }: { block: ImageTextBlock
                 </h3>
               )}
               {block.body && (
-                <p
+                <div
                   className="editorial-it__body"
-                  style={bodyStyle}
+                  style={leftBodyStyle}
                   dangerouslySetInnerHTML={{ __html: block.body }}
                 />
               )}
@@ -135,9 +173,9 @@ export default function ImageTextBlock({ block, index }: { block: ImageTextBlock
                 </h3>
               )}
               {block.bodyRight && (
-                <p
+                <div
                   className="editorial-it__body"
-                  style={bodyStyle}
+                  style={rightBodyStyle}
                   dangerouslySetInnerHTML={{ __html: block.bodyRight }}
                 />
               )}
@@ -213,6 +251,19 @@ export default function ImageTextBlock({ block, index }: { block: ImageTextBlock
   const activeLabel = variant === 'image-text' ? (block.labelRight || block.label) : (block.label || block.labelRight)
   const activeHeading = variant === 'image-text' ? (block.headingRight || block.heading) : (block.heading || block.headingRight)
   const activeBody = variant === 'image-text' ? (block.bodyRight || block.body) : (block.body || block.bodyRight)
+  const activeTextSize = variant === 'image-text' ? (block.textSizeRight || block.textSize) : (block.textSize || block.textSizeRight)
+  const activeCustomTextSize = variant === 'image-text' ? (block.customTextSizeRight || block.customTextSize) : (block.customTextSize || block.customTextSizeRight)
+  const activeResolvedSize = resolveTextSize(activeTextSize, activeCustomTextSize)
+
+  const activeLineHeight = variant === 'image-text' ? (block.lineHeightRight || block.lineHeight) : (block.lineHeight || block.lineHeightRight)
+  const activeCustomLineHeight = variant === 'image-text' ? (block.customLineHeightRight || block.customLineHeight) : (block.customLineHeight || block.customLineHeightRight)
+  const activeResolvedLineHeight = resolveLineHeight(activeLineHeight, activeCustomLineHeight)
+
+  const activeBodyStyle = {
+    ...bodyStyle,
+    ...(activeResolvedSize ? { fontSize: activeResolvedSize } : {}),
+    ...(activeResolvedLineHeight ? { lineHeight: activeResolvedLineHeight } : {}),
+  }
 
   return (
     <div className="editorial-it-container">
@@ -228,9 +279,9 @@ export default function ImageTextBlock({ block, index }: { block: ImageTextBlock
             {activeLabel && <span className="editorial-it__label" style={labelStyle}>{activeLabel}</span>}
             {activeHeading && <h3 className="editorial-it__heading" style={headingStyle}>{activeHeading}</h3>}
             {activeBody && (
-              <p
+              <div
                 className="editorial-it__body"
-                style={bodyStyle}
+                style={activeBodyStyle}
                 dangerouslySetInnerHTML={{ __html: activeBody }}
               />
             )}

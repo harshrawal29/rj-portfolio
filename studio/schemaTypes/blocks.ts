@@ -105,6 +105,67 @@ export const imageTextBlock = defineType({
       of: [{type: 'block'}],
       hidden: ({ parent }) => parent?.variant === 'image-image' || parent?.variant === 'image-text'
     }),
+    defineField({
+      name: 'textSize',
+      title: 'Body Text Size',
+      type: 'string',
+      description: 'Select preset font size or choose Custom Size',
+      options: {
+        list: [
+          { title: 'Default (Responsive 16-18px)', value: 'default' },
+          { title: '10px', value: '10px' },
+          { title: '12px', value: '12px' },
+          { title: '14px', value: '14px' },
+          { title: '16px', value: '16px' },
+          { title: '18px', value: '18px' },
+          { title: '20px', value: '20px' },
+          { title: '22px', value: '22px' },
+          { title: '24px', value: '24px' },
+          { title: '28px', value: '28px' },
+          { title: '32px', value: '32px' },
+          { title: 'Custom Size...', value: 'custom' },
+        ],
+      },
+      initialValue: 'default',
+      hidden: ({ parent }) => parent?.variant === 'image-image' || parent?.variant === 'image-text'
+    }),
+    defineField({
+      name: 'customTextSize',
+      title: 'Custom Text Size',
+      type: 'string',
+      description: 'Enter a custom size (e.g., 15px, 1.25rem, 26px)',
+      hidden: ({ parent }) => parent?.variant === 'image-image' || parent?.variant === 'image-text' || parent?.textSize !== 'custom',
+    }),
+    defineField({
+      name: 'lineHeight',
+      title: 'Body Line Spacing',
+      type: 'string',
+      description: 'Select line spacing (e.g., 1.1 - 1.3 for large text, 1.5 - 1.7 for small text)',
+      options: {
+        list: [
+          { title: 'Default (1.7)', value: 'default' },
+          { title: '1.0 (Single)', value: '1.0' },
+          { title: '1.1 (Very Tight)', value: '1.1' },
+          { title: '1.2 (Tight)', value: '1.2' },
+          { title: '1.3 (Snug)', value: '1.3' },
+          { title: '1.4 (Compact)', value: '1.4' },
+          { title: '1.5 (Normal)', value: '1.5' },
+          { title: '1.6 (Comfortable)', value: '1.6' },
+          { title: '1.8 (Relaxed)', value: '1.8' },
+          { title: '2.0 (Double)', value: '2.0' },
+          { title: 'Custom...', value: 'custom' },
+        ],
+      },
+      initialValue: 'default',
+      hidden: ({ parent }) => parent?.variant === 'image-image' || parent?.variant === 'image-text'
+    }),
+    defineField({
+      name: 'customLineHeight',
+      title: 'Custom Line Spacing',
+      type: 'string',
+      description: 'Enter custom line height (e.g., 1.25, 1.35, 36px)',
+      hidden: ({ parent }) => parent?.variant === 'image-image' || parent?.variant === 'image-text' || parent?.lineHeight !== 'custom',
+    }),
     
     // Right side text fields (used for text-text and image-text)
     defineField({
@@ -125,6 +186,67 @@ export const imageTextBlock = defineType({
       type: 'array',
       of: [{type: 'block'}],
       hidden: ({ parent }) => parent?.variant !== 'text-text' && parent?.variant !== 'image-text'
+    }),
+    defineField({
+      name: 'textSizeRight',
+      title: 'Right Body Text Size',
+      type: 'string',
+      description: 'Select preset font size or choose Custom Size',
+      options: {
+        list: [
+          { title: 'Default (Responsive 16-18px)', value: 'default' },
+          { title: '10px', value: '10px' },
+          { title: '12px', value: '12px' },
+          { title: '14px', value: '14px' },
+          { title: '16px', value: '16px' },
+          { title: '18px', value: '18px' },
+          { title: '20px', value: '20px' },
+          { title: '22px', value: '22px' },
+          { title: '24px', value: '24px' },
+          { title: '28px', value: '28px' },
+          { title: '32px', value: '32px' },
+          { title: 'Custom Size...', value: 'custom' },
+        ],
+      },
+      initialValue: 'default',
+      hidden: ({ parent }) => parent?.variant !== 'text-text' && parent?.variant !== 'image-text'
+    }),
+    defineField({
+      name: 'customTextSizeRight',
+      title: 'Right Body Custom Text Size',
+      type: 'string',
+      description: 'Enter a custom size (e.g., 15px, 1.25rem, 26px)',
+      hidden: ({ parent }) => parent?.variant !== 'text-text' && parent?.variant !== 'image-text' || parent?.textSizeRight !== 'custom',
+    }),
+    defineField({
+      name: 'lineHeightRight',
+      title: 'Right Body Line Spacing',
+      type: 'string',
+      description: 'Select line spacing (e.g., 1.1 - 1.3 for large text, 1.5 - 1.7 for small text)',
+      options: {
+        list: [
+          { title: 'Default (1.7)', value: 'default' },
+          { title: '1.0 (Single)', value: '1.0' },
+          { title: '1.1 (Very Tight)', value: '1.1' },
+          { title: '1.2 (Tight)', value: '1.2' },
+          { title: '1.3 (Snug)', value: '1.3' },
+          { title: '1.4 (Compact)', value: '1.4' },
+          { title: '1.5 (Normal)', value: '1.5' },
+          { title: '1.6 (Comfortable)', value: '1.6' },
+          { title: '1.8 (Relaxed)', value: '1.8' },
+          { title: '2.0 (Double)', value: '2.0' },
+          { title: 'Custom...', value: 'custom' },
+        ],
+      },
+      initialValue: 'default',
+      hidden: ({ parent }) => parent?.variant !== 'text-text' && parent?.variant !== 'image-text'
+    }),
+    defineField({
+      name: 'customLineHeightRight',
+      title: 'Right Body Custom Line Spacing',
+      type: 'string',
+      description: 'Enter custom line height (e.g., 1.25, 1.35, 36px)',
+      hidden: ({ parent }) => parent?.variant !== 'text-text' && parent?.variant !== 'image-text' || parent?.lineHeightRight !== 'custom',
     }),
   ],
   preview: {
