@@ -159,6 +159,17 @@
   border: none;
   padding: 0;
 }
+.editorial-statement__text p {
+  display: inline;
+  margin: 0;
+}
+.editorial-statement__text p + p::before {
+  content: ' ';
+}
+.editorial-statement__text a {
+  color: inherit;
+  text-underline-offset: 0.12em;
+}
 
 /* ─── Comparison Block ──────────────────────────────────────── */
 .editorial-comparison {

@@ -281,9 +281,21 @@ export const statementBlock = defineType({
     }),
   ],
   preview: {
-    select: {title: 'text'},
-    prepare({title}) {
-      return {title: title ? `Statement: ${title.substring(0, 30)}...` : 'Statement Block'}
+    select: {text: 'text'},
+    prepare({text}) {
+      const plain = Array.isArray(text)
+        ? text
+            .map((block: {_type?: string; children?: {text?: string}[]}) =>
+              block?._type === 'block'
+                ? (block.children || []).map((child) => child?.text || '').join('')
+                : '',
+            )
+            .filter(Boolean)
+            .join(' ')
+        : typeof text === 'string'
+          ? text
+          : ''
+      return {title: plain ? `Statement: ${plain.slice(0, 40)}` : 'Statement Block'}
     },
   },
 })

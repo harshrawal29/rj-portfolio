@@ -38,7 +38,9 @@ export default function StatementBlock({ block }: { block: StatementBlockType })
         className="editorial-statement__text"
         style={block.textColor ? { color: block.textColor } : undefined}
       >
-        &ldquo;{block.text}&rdquo;
+        &ldquo;
+        <span dangerouslySetInnerHTML={{ __html: block.text || '' }} />
+        &rdquo;
       </blockquote>
     </div>
   )
