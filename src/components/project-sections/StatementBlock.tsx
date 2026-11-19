@@ -32,8 +32,18 @@ export default function StatementBlock({ block }: { block: StatementBlockType })
     return () => ctx.revert()
   }, [])
 
+  const backgroundColor = block.backgroundColor?.trim()
+
   return (
-    <div ref={ref} className="editorial-statement">
+    <div
+      ref={ref}
+      className="editorial-statement"
+      style={
+        backgroundColor
+          ? { backgroundColor, maxWidth: 'none', width: '100%', paddingBottom: '80px' }
+          : undefined
+      }
+    >
       <blockquote
         className="editorial-statement__text"
         style={block.textColor ? { color: block.textColor } : undefined}
