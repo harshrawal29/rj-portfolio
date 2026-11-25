@@ -44,14 +44,12 @@ export default function StatementBlock({ block }: { block: StatementBlockType })
           : undefined
       }
     >
-      <blockquote
+      <div
         className="editorial-statement__text"
         style={block.textColor ? { color: block.textColor } : undefined}
       >
-        &ldquo;
-        <span dangerouslySetInnerHTML={{ __html: block.text || '' }} />
-        &rdquo;
-      </blockquote>
+        <div dangerouslySetInnerHTML={{ __html: block.text || '' }} />
+      </div>
     </div>
   )
 }

@@ -263,7 +263,7 @@ export function Component() {
           <div className="hero-reveal case-study__hero-meta">
             <span className="case-study__hero-meta-item">{project.year}</span>
           </div>
-          <h1 className="hero-reveal case-study__hero-title">{project.title}</h1>
+          <h1 className="hero-reveal case-study__hero-title -ml-1.25!">{project.title}</h1>
           <p className="hero-reveal case-study__hero-desc">{project.summary}</p>
         </div>
       </header>

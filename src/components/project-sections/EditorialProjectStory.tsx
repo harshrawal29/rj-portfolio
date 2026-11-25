@@ -56,10 +56,15 @@ export default function EditorialProjectStory({ project }: { project: Project })
           </motion.p>
           <motion.h2
             variants={itemVariants}
-            className="font-extralight tracking-tight text-[#111111] max-w-[750px] editorial-story-content"
-            style={{ fontSize: 'clamp(28px, 2.2vw, 56px)', lineHeight: '1.15' }}
-            dangerouslySetInnerHTML={{ __html: mainStory }}
-          />
+            className="tracking-tight text-[#111111] max-w-187.5 editorial-story-content font-medium"
+            style={{
+              fontSize: 'clamp(20px, 1.2vw, 56px)',
+              lineHeight: '1.27',
+              whiteSpace: 'pre-line',
+            }}
+          >
+            {mainStory}
+          </motion.h2>
         </div>
 
         {/* Right Column (35%) */}

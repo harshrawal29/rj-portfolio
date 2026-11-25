@@ -53,7 +53,7 @@ function Header() {
           }`}
       >
         <nav
-          className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-5 sm:px-8 lg:px-12"
+          className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-5 sm:px-8 lg:px-4"
           aria-label="Primary"
         >
           <Link
